@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projetoPA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/projetoPA.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Atributo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Atributo.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Document.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Document.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Entidade.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Entidade.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +18,7 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -31,13 +36,81 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "D:/4ano/workspaceIntelli/untitled",
-    "nodejs_package_manager_path": "npm"
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
   }
 }]]></component>
+  <component name="RunManager" selected="JUnit.Tests.testsetTexto">
+    <configuration name="Tests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projetoPA" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.testchangeName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projetoPA" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="METHOD_NAME" value="testchangeName" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.testchangeValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projetoPA" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="METHOD_NAME" value="testchangeValue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.testremoveTexto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projetoPA" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="METHOD_NAME" value="testremoveTexto" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.testsetTexto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projetoPA" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="METHOD_NAME" value="testsetTexto" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.Tests.testsetTexto" />
+        <item itemvalue="JUnit.Tests.testremoveTexto" />
+        <item itemvalue="JUnit.Tests" />
+        <item itemvalue="JUnit.Tests.testchangeValue" />
+        <item itemvalue="JUnit.Tests.testchangeName" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -47,7 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1711285979360</updated>
       <workItem from="1711285980956" duration="542000" />
-      <workItem from="1711287235449" duration="1654000" />
+      <workItem from="1711287235449" duration="6368000" />
     </task>
     <servers />
   </component>

@@ -10,4 +10,20 @@ class Document(
                 it.accept(visitor)
             }
     }
+
+    fun addEntidade(entidade:Entidade): Boolean{
+        children.add(entidade)
+        return true
+    }
+    fun removeEntidade(entidade:Entidade): Boolean{
+        if (children.contains(entidade)) {
+            children.remove(entidade)
+            return true
+        }
+        return false
+    }
+
+    fun getEntidades():List<Entidade>{
+        return children
+    }
 }
