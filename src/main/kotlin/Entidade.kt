@@ -9,10 +9,8 @@ public class Entidade private constructor(
     val atributos: MutableList<Atributo> = mutableListOf<Atributo>()
     var texto: String = ""
 
-    // Constructor that uses document
     constructor(name: String, document: Document) : this(name, document, null)
 
-    // Constructor that uses parentEntidade
     constructor(name: String, parentEntidade: Entidade) : this(name, null, parentEntidade)
 
     init {

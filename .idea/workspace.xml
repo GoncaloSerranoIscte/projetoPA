@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projetoPA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/projetoPA.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Atributo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Atributo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Document.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Document.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Entidade.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Entidade.kt" afterDir="false" />
-    </list>
+    <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +114,7 @@
       <option name="presentableId" value="Default" />
       <updated>1711285979360</updated>
       <workItem from="1711285980956" duration="542000" />
-      <workItem from="1711287235449" duration="6368000" />
+      <workItem from="1711287235449" duration="7017000" />
     </task>
     <servers />
   </component>
