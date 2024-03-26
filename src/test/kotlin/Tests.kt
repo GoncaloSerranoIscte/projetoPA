@@ -17,8 +17,6 @@ class Tests{
         assertEquals(mutableListOf<Entidade>(entidade0),documento.getEntidades())
         assertEquals(mutableListOf<Entidade>(entidade1),entidade0.getEntidades())
         assertEquals(mutableListOf<Entidade>(), entidade1.getEntidades())
-
-
     }
 
     @Test
@@ -116,4 +114,63 @@ class Tests{
         assertEquals("valor1",entidade0.atributos[0].value)
     }
 
+    @Test
+    fun testgetString(){
+        val documento:Document=Document("documento")
+        val entidade0:Entidade=Entidade("entidade0",documento)
+        val atributo0:Atributo=Atributo("atributo0","valor0")
+        entidade0.addAtributo(atributo0)
+
+        assertEquals("<entidade0 atributo0=\"valor0\"/>", entidade0.getString())
+        entidade0.setTexto("texto0")
+        assertEquals("<entidade0 atributo0=\"valor0\">texto0</entidade0>", entidade0.getString())
+        assertEquals("\t<entidade0 atributo0=\"valor0\">texto0</entidade0>", entidade0.getString(1))
+
+        val entidade1:Entidade=Entidade("entidade1",documento)
+        val entidade2:Entidade=Entidade("entidade2",entidade1)
+        val entidade3:Entidade=Entidade("entidade3",entidade1)
+        val entidade4:Entidade=Entidade("entidade4",entidade3)
+        val atributo1:Atributo=Atributo("atributo1","valor1")
+        entidade2.setTexto("texto2")
+        entidade2.addAtributo(atributo1)
+        entidade4.setTexto("texto4")
+        assertEquals("<entidade1>\n" +
+                "\t<entidade2 atributo1=\"valor1\">texto2</entidade2>\n" +
+                "\t<entidade3>\n" +
+                "\t\t<entidade4>texto4</entidade4>\n" +
+                "\t</entidade3>\n" +
+                "</entidade1>", entidade1.getString())
+    }
+
+    @Test
+    fun testgetPrettyPrint(){
+        val documento:Document=Document("documento")
+        val entidadeSup:Entidade=Entidade("entidadeSup",documento)
+        val entidade0:Entidade=Entidade("entidade0",entidadeSup)
+        val entidade1:Entidade=Entidade("entidade1",entidadeSup)
+        val entidade2:Entidade=Entidade("entidade2",entidade1)
+        val entidade3:Entidade=Entidade("entidade3",entidade1)
+        val entidade4:Entidade=Entidade("entidade4",entidade3)
+        val entidade5:Entidade=Entidade("entidade5",entidade3)
+        val atributo0:Atributo=Atributo("atributo0","valor0")
+        val atributo1:Atributo=Atributo("atributo1","valor1")
+        entidade0.addAtributo(atributo0)
+        entidade1.addAtributo(atributo0)
+        entidade0.setTexto("texto0")
+        entidade2.setTexto("texto2")
+        entidade2.addAtributo(atributo1)
+        entidade5.addAtributo(atributo1)
+        entidade4.setTexto("texto4")
+        assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<entidadeSup>\n" +
+                "\t<entidade0 atributo0=\"valor0\">texto0</entidade0>\n" +
+                "\t<entidade1 atributo0=\"valor0\">\n" +
+                "\t\t<entidade2 atributo1=\"valor1\">texto2</entidade2>\n" +
+                "\t\t<entidade3>\n" +
+                "\t\t\t<entidade4>texto4</entidade4>\n" +
+                "\t\t\t<entidade5 atributo1=\"valor1\"/>\n" +
+                "\t\t</entidade3>\n" +
+                "\t</entidade1>\n" +
+                "</entidadeSup>",documento.getPrettyPrint())
+    }
 }

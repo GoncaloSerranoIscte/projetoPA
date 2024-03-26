@@ -87,4 +87,31 @@ public class Entidade private constructor(
     fun getEntidadeParent(): Entidade? {
         return parentEntidade
     }
+
+    fun getString(depth: Int = 0):String{
+        var str = ""
+        for (i in 1..depth){
+            str += "\t"
+        }
+        str += "<"+this.name
+        atributos.forEach{
+            str += " " + it.name + "=\"" + it.value + "\""
+        }
+        if(texto!=""){
+            str += ">" + this.texto + "</" + this.name + ">"
+        }else if (children.size>0){
+            str += ">"
+            children.forEach {
+                str += "\n" + it.getString(depth+1)
+            }
+            str += "\n"
+            for (i in 1..depth){
+                str += "\t"
+            }
+            str += "</" + this.name + ">"
+        }else{
+            str += "/>"
+        }
+        return str
+    }
 }

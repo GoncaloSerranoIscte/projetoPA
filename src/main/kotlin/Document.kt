@@ -26,4 +26,13 @@ class Document(
     fun getEntidades():List<Entidade>{
         return children
     }
+
+    fun getPrettyPrint(): String{
+        var str = "<?xml version=\"" + this.version + "\" encoding=\"" + this.enconding + "\"?>"
+        children.forEach {
+            str += "\n" + it.getString()
+        }
+
+        return str
+    }
 }
