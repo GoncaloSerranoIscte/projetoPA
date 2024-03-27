@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Document.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Document.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Entidade.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Entidade.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/HasVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/HasVisitor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/Tests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/Tests.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,29 +34,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/4ano/workspaceIntelli/untitled&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/4ano/workspaceIntelli/projetoPA/src/test/Testfiles",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
   }
-}</component>
-  <component name="RunManager" selected="JUnit.Tests">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\4ano\workspaceIntelli\projetoPA\src\test\Testfiles" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.Tests.testwriteToFile">
     <configuration name="Tests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="projetoPA" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Tests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.testaddAtributoGlobally" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projetoPA" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="METHOD_NAME" value="testaddAtributoGlobally" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -70,31 +86,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tests.testgetString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Tests.testreplaceEntidadeName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="projetoPA" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Tests" />
-      <option name="METHOD_NAME" value="testgetString" />
+      <option name="METHOD_NAME" value="testreplaceEntidadeName" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tests.testremoveTexto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Tests.testwriteToFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="projetoPA" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Tests" />
-      <option name="METHOD_NAME" value="testremoveTexto" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tests.testsetTexto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="projetoPA" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Tests" />
-      <option name="METHOD_NAME" value="testsetTexto" />
+      <option name="METHOD_NAME" value="testwriteToFile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -102,11 +108,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Tests.testwriteToFile" />
+        <item itemvalue="JUnit.Tests.testreplaceEntidadeName" />
         <item itemvalue="JUnit.Tests" />
+        <item itemvalue="JUnit.Tests.testaddAtributoGlobally" />
         <item itemvalue="JUnit.Tests.testgetPrettyPrint" />
-        <item itemvalue="JUnit.Tests.testgetString" />
-        <item itemvalue="JUnit.Tests.testsetTexto" />
-        <item itemvalue="JUnit.Tests.testremoveTexto" />
       </list>
     </recent_temporary>
   </component>
@@ -121,6 +127,7 @@
       <workItem from="1711285980956" duration="542000" />
       <workItem from="1711287235449" duration="8281000" />
       <workItem from="1711483156597" duration="3857000" />
+      <workItem from="1711572329277" duration="2360000" />
     </task>
     <servers />
   </component>

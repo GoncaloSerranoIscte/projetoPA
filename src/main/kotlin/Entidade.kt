@@ -1,4 +1,4 @@
-import java.util.StringJoiner
+import java.io.File
 
 public class Entidade private constructor(
     var name:String,
@@ -25,6 +25,9 @@ public class Entidade private constructor(
             }
     }
 
+    fun getNameEntidade():String{
+        return name
+    }
     fun addEntidade(entidade: Entidade): Boolean{
         if (texto.equals("")) {
             children.add(entidade)
@@ -40,6 +43,12 @@ public class Entidade private constructor(
         }
         return false
     }
+
+    fun setName(name: String): Boolean{
+        this.name=name
+        return true
+    }
+
     fun setTexto(texto: String): Boolean{
         if (children.size==0) {
             this.texto = texto
@@ -90,28 +99,23 @@ public class Entidade private constructor(
 
     fun getString(depth: Int = 0):String{
         var str = ""
-        for (i in 1..depth){
-            str += "\t"
-        }
-        str += "<"+this.name
+        str += "\t".repeat(depth) + "<"+this.name
         atributos.forEach{
-            str += " " + it.name + "=\"" + it.value + "\""
+            str += " ${it.name}=\"${it.value}\""
         }
         if(texto!=""){
-            str += ">" + this.texto + "</" + this.name + ">"
+            str += ">${this.texto}</${this.name}>"
         }else if (children.size>0){
             str += ">"
             children.forEach {
-                str += "\n" + it.getString(depth+1)
+                str += "\n${it.getString(depth + 1)}"
             }
-            str += "\n"
-            for (i in 1..depth){
-                str += "\t"
-            }
-            str += "</" + this.name + ">"
+            str += "\n" + "\t".repeat(depth) + "</${this.name}>"
         }else{
             str += "/>"
         }
         return str
     }
+
+
 }

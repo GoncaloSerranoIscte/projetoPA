@@ -1,3 +1,5 @@
+import java.io.File
+
 class Document(
     val name:String,
     val version: String? = "1.0",
@@ -32,7 +34,29 @@ class Document(
         children.forEach {
             str += "\n" + it.getString()
         }
-
         return str
+    }
+
+    fun writeToFile(file_path: String){
+        val file = File(file_path)
+        if (!file.exists()) {
+            file.createNewFile()
+        }
+        file.writeText(getPrettyPrint())
+    }
+
+    fun addAtributoGlobally(nome_entidade:String, nome_atributo:String, valor_atributo:String){
+        var atributo:Atributo=Atributo(nome_atributo,valor_atributo)
+        this.accept {
+            if (it is Entidade) it.addAtributo(atributo)
+            true
+        }
+    }
+
+    fun replaceEntidadeName(nome_entidade: String,novo_nome_entidade:String){
+        this.accept {
+            if (it is Entidade && it.getNameEntidade().equals(nome_entidade)) it.setName(novo_nome_entidade)
+            true
+        }
     }
 }

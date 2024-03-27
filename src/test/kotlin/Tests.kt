@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import java.io.File
 
 
 class Tests{
@@ -172,5 +173,79 @@ class Tests{
                 "\t\t</entidade3>\n" +
                 "\t</entidade1>\n" +
                 "</entidadeSup>",documento.getPrettyPrint())
+    }
+
+    @Test
+    fun testwriteToFile(){
+        val documento:Document=Document("documento")
+        val entidadeSup:Entidade=Entidade("entidadeSup",documento)
+        val entidade0:Entidade=Entidade("entidade0",entidadeSup)
+        val entidade1:Entidade=Entidade("entidade1",entidadeSup)
+        val entidade2:Entidade=Entidade("entidade2",entidade1)
+        val entidade3:Entidade=Entidade("entidade3",entidade1)
+        val entidade4:Entidade=Entidade("entidade4",entidade3)
+        val entidade5:Entidade=Entidade("entidade5",entidade3)
+        val atributo0:Atributo=Atributo("atributo0","valor0")
+        val atributo1:Atributo=Atributo("atributo1","valor1")
+        entidade0.addAtributo(atributo0)
+        entidade1.addAtributo(atributo0)
+        entidade0.setTexto("texto0")
+        entidade2.setTexto("texto2")
+        entidade2.addAtributo(atributo1)
+        entidade5.addAtributo(atributo1)
+        entidade4.setTexto("texto4")
+        val file_path="src/test/kotlin/file0.xml"
+        val test_file_path="src/test/Testfiles/test_file0.xml"
+        documento.writeToFile(file_path)
+        val file = File(file_path)
+        val test_file = File(test_file_path)
+        assertEquals(file.readLines(),test_file.readLines())
+    }
+
+    @Test
+    fun testaddAtributoGlobally(){
+        val documento:Document=Document("documento")
+        val entidadeSup:Entidade=Entidade("entidadeSup",documento)
+        val entidade0:Entidade=Entidade("entidade0",entidadeSup)
+        val entidade1:Entidade=Entidade("entidade1",entidadeSup)
+        val entidade2:Entidade=Entidade("entidade1",entidade1)
+        val entidade3:Entidade=Entidade("entidade4",entidade1)
+        val entidade4:Entidade=Entidade("entidade1",entidade3)
+        val entidade5:Entidade=Entidade("entidade1",entidade3)
+        documento.addAtributoGlobally("entidade1","atributo0","valor0")
+        assertEquals(entidade1.atributos[0].name,"atributo0")
+        assertEquals(entidade1.atributos[0].value,"valor0")
+        assertEquals(entidade2.atributos[0].name,"atributo0")
+        assertEquals(entidade2.atributos[0].value,"valor0")
+        assertEquals(entidade4.atributos[0].name,"atributo0")
+        assertEquals(entidade4.atributos[0].value,"valor0")
+        assertEquals(entidade5.atributos[0].name,"atributo0")
+        assertEquals(entidade5.atributos[0].value,"valor0")
+        assertNotEquals(entidadeSup.atributos.size,0)
+        assertNotEquals(entidadeSup.atributos.size,0)
+        assertNotEquals(entidade0.atributos.size,0)
+        assertNotEquals(entidade0.atributos.size,0)
+        assertNotEquals(entidade3.atributos.size,0)
+        assertNotEquals(entidade3.atributos.size,0)
+    }
+
+    @Test
+    fun testreplaceEntidadeName(){
+        val documento:Document=Document("documento")
+        val entidadeSup:Entidade=Entidade("entidadeSup",documento)
+        val entidade0:Entidade=Entidade("entidade0",entidadeSup)
+        val entidade1:Entidade=Entidade("entidade1",entidadeSup)
+        val entidade2:Entidade=Entidade("entidade1",entidade1)
+        val entidade3:Entidade=Entidade("entidade4",entidade1)
+        val entidade4:Entidade=Entidade("entidade1",entidade3)
+        val entidade5:Entidade=Entidade("entidade1",entidade3)
+        documento.replaceEntidadeName("entidade1","novo_nome")
+        assertNotEquals(entidadeSup.name,"novo_nome")
+        assertNotEquals(entidade0.name,"novo_nome")
+        assertEquals(entidade1.name,"novo_nome")
+        assertEquals(entidade2.name,"novo_nome")
+        assertNotEquals(entidade3.name,"novo_nome")
+        assertEquals(entidade4.name,"novo_nome")
+        assertEquals(entidade5.name,"novo_nome")
     }
 }

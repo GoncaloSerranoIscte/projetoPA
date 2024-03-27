@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entidadeSup>
+	<entidade0 atributo0="valor0">texto0</entidade0>
+	<entidade1 atributo0="valor0">
+		<entidade2 atributo1="valor1">texto2</entidade2>
+		<entidade3>
+			<entidade4>texto4</entidade4>
+			<entidade5 atributo1="valor1"/>
+		</entidade3>
+	</entidade1>
+</entidadeSup>
