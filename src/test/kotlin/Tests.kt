@@ -239,7 +239,7 @@ class Tests{
         val entidade3:Entidade=Entidade("entidade4",entidade1)
         val entidade4:Entidade=Entidade("entidade1",entidade3)
         val entidade5:Entidade=Entidade("entidade1",entidade3)
-        documento.replaceEntidadeName("entidade1","novo_nome")
+        documento.replaceEntidadeNameGlobal("entidade1","novo_nome")
         assertNotEquals(entidadeSup.name,"novo_nome")
         assertNotEquals(entidade0.name,"novo_nome")
         assertEquals(entidade1.name,"novo_nome")
@@ -247,5 +247,34 @@ class Tests{
         assertNotEquals(entidade3.name,"novo_nome")
         assertEquals(entidade4.name,"novo_nome")
         assertEquals(entidade5.name,"novo_nome")
+    }
+
+    @Test
+    fun testgetPath(){
+        val documento:Document=Document("documento")
+        val entidadeSup:Entidade=Entidade("entidadeSup",documento)
+        val entidade0:Entidade=Entidade("entidade0",entidadeSup)
+        val entidade1:Entidade=Entidade("entidade1",entidadeSup)
+        val entidade2:Entidade=Entidade("entidade1",entidade1)
+        val entidade3:Entidade=Entidade("entidade4",entidade1)
+        val entidade4:Entidade=Entidade("entidade1",entidade3)
+        val entidade5:Entidade=Entidade("entidade1",entidade3)
+        assertEquals("entidadeSup/entidade1/entidade4",entidade5.getPath())
+        assertEquals("",entidadeSup.getPath())
+    }
+
+    //todo nao funciona
+    @Test
+    fun testmicro_XPath(){
+        val documento:Document=Document("documento")
+        val entidadeSup:Entidade=Entidade("entidadeSup",documento)
+        val entidade0:Entidade=Entidade("entidade0",entidadeSup)
+        val entidade1:Entidade=Entidade("entidade1",entidadeSup)
+        val entidade2:Entidade=Entidade("entidade1",entidade1)
+        val entidade3:Entidade=Entidade("entidade4",entidade1)
+        val entidade4:Entidade=Entidade("entidade1",entidade3)
+        val entidade5:Entidade=Entidade("entidade1",entidade3)
+        assertEquals(mutableListOf<Entidade>(),documento.micro_XPath(""))
+        assertEquals(mutableListOf<Entidade>(),documento.micro_XPath("entidade4"))
     }
 }

@@ -53,10 +53,38 @@ class Document(
         }
     }
 
-    fun replaceEntidadeName(nome_entidade: String,novo_nome_entidade:String){
+    fun replaceEntidadeNameGlobal(nome_entidade: String,novo_nome_entidade:String){
         this.accept {
             if (it is Entidade && it.getNameEntidade().equals(nome_entidade)) it.setName(novo_nome_entidade)
             true
         }
+    }
+
+    //todo testes
+    fun replaceAtributoNameGlobal(nome_entidade: String,nome_atributo_antigo: String,nome_atributo_novo: String ){
+        this.accept {
+            if (it is Entidade && it.getNameEntidade().equals(nome_entidade)) it.changeAtributoName(nome_atributo_antigo,nome_atributo_novo)
+            true
+        }
+    }
+
+    //todo testes
+    fun removeAtributoGlobal(nome_entidade: String,nome_atributo: String){
+        this.accept {
+            if (it is Entidade && it.getNameEntidade().equals(nome_entidade)) it.removeAtributo(nome_atributo)
+            true
+        }
+    }
+
+    fun micro_XPath(path: String):MutableList<Entidade>{
+        var entidadeWithPath:MutableList<Entidade> = mutableListOf()
+        this.accept {
+            if(it is Entidade){
+                if(it.getPath().endsWith("path"))
+                    entidadeWithPath.add(it)
+            }
+            true
+        }
+        return entidadeWithPath
     }
 }

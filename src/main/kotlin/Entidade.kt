@@ -74,12 +74,52 @@ public class Entidade private constructor(
         atributos.add(atributo)
         return true
     }
+
+    //todo testes
+    fun addAtributo(name: String, value:String): Boolean{
+        atributos.add(Atributo(name,value))
+        return true
+    }
     fun removeAtributo(atributo:Atributo): Boolean{
         if (atributos.contains(atributo)){
             atributos.remove(atributo)
             return true
         }
         return false
+    }
+
+    //todo testes
+    fun removeAtributo(name:String): Boolean{
+        var atributos_to_remove:MutableList<Atributo> = mutableListOf()
+        atributos.forEach {
+            if(it.name.equals(name))
+                atributos_to_remove.add(it)
+        }
+        if (atributos_to_remove.size>0){
+            atributos_to_remove.forEach {
+                atributos.remove(it)
+            }
+            return true
+        }
+        return false
+    }
+
+    //todo testes
+    fun changeAtributoName(nome_antigo:String,nome_novo:String):Boolean{
+        atributos.forEach {
+            if(it.name.equals(nome_antigo))
+                it.changeName(nome_novo)
+        }
+        return true
+    }
+
+    //todo testes
+    fun changeAtributoValue(nome:String,valor:String):Boolean{
+        atributos.forEach {
+            if(it.name.equals(nome))
+                it.changeValue(valor)
+        }
+        return true
     }
 
     fun replaceAtributo(atributo_atual: Atributo, atributo_novo: Atributo): Boolean{
@@ -117,5 +157,20 @@ public class Entidade private constructor(
         return str
     }
 
+    fun getPath():String{
+        var path:String = ""
+        fun getPathAux(entidade: Entidade) {
+            if (entidade.getEntidadeParent() == null){
+                return
+            }
+            else {
+                path = "${entidade.getEntidadeParent()?.name}/" + path
+                getPathAux(entidade.getEntidadeParent()!!)
+            }
+        }
+        getPathAux(this)
+
+        return path.removeSuffix("/")
+    }
 
 }
