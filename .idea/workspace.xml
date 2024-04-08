@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLDocument.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Atributo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/XMLAttribute.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Document.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/XMLDocument.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Entidade.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/XMLEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/Tests.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/XMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/XMLDocument.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/XMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/XMLEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLDocument.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/file0.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,50 +57,50 @@
       <recent name="D:\4ano\workspaceIntelli\projetoPA\src\test\Testfiles" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestXMLDocument">
-    <configuration name="TestXMLDocument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TestXMLDocument.addXMLAttributeGlobally">
+    <configuration name="All in projetoPA" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projetoPA" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestXMLDocument.addXMLAttributeGlobally" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="projetoPA" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestXMLDocument" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestXMLEntity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="projetoPA" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestXMLEntity" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestXMLEntity.test_toString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="projetoPA" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestXMLEntity" />
-      <option name="METHOD_NAME" value="test_toString" />
+      <option name="METHOD_NAME" value="addXMLAttributeGlobally" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestXMLEntity.testgetPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestXMLDocument.getPrettyPrint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="projetoPA" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestXMLEntity" />
-      <option name="METHOD_NAME" value="testgetPath" />
+      <option name="MAIN_CLASS_NAME" value="TestXMLDocument" />
+      <option name="METHOD_NAME" value="getPrettyPrint" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestXMLEntity.toString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestXMLDocument.writeToFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projetoPA" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestXMLDocument" />
+      <option name="METHOD_NAME" value="writeToFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestXMLEntity.toPrettyPrint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="projetoPA" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestXMLEntity" />
-      <option name="METHOD_NAME" value="toString" />
+      <option name="METHOD_NAME" value="toPrettyPrint" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -108,11 +108,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestXMLDocument" />
-        <item itemvalue="JUnit.TestXMLEntity" />
-        <item itemvalue="JUnit.TestXMLEntity.testgetPath" />
-        <item itemvalue="JUnit.TestXMLEntity.test_toString" />
-        <item itemvalue="JUnit.TestXMLEntity.toString" />
+        <item itemvalue="JUnit.TestXMLDocument.addXMLAttributeGlobally" />
+        <item itemvalue="JUnit.All in projetoPA" />
+        <item itemvalue="JUnit.TestXMLDocument.writeToFile" />
+        <item itemvalue="JUnit.TestXMLDocument.getPrettyPrint" />
+        <item itemvalue="JUnit.TestXMLEntity.toPrettyPrint" />
       </list>
     </recent_temporary>
   </component>
@@ -132,7 +132,8 @@
       <workItem from="1711992940411" duration="4654000" />
       <workItem from="1712086560670" duration="1484000" />
       <workItem from="1712165522154" duration="626000" />
-      <workItem from="1712499496418" duration="12288000" />
+      <workItem from="1712499496418" duration="12653000" />
+      <workItem from="1712596935550" duration="6003000" />
     </task>
     <servers />
   </component>

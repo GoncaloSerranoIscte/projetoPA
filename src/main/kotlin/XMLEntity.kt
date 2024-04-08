@@ -1,5 +1,3 @@
-import java.util.StringJoiner
-
 data class XMLEntity private constructor(
     private var name:String,
     private var parentXMLDocument: XMLDocument?=null,
@@ -42,8 +40,8 @@ data class XMLEntity private constructor(
 
 
     init {
-        parentXMLDocument?.addXMLEntity(this)
-        parentXMLEntity?.addXMLEntityChild(this)
+        getDocumentParent?.addXMLEntity(this)
+        getEntityParent?.addXMLEntityChild(this)
     }
 
     override fun accept(visitor: (HasVisitor) -> Boolean) {
@@ -58,8 +56,8 @@ data class XMLEntity private constructor(
 
     fun addXMLEntityChild(xmlEntityToAdd: XMLEntity): Boolean{
         if (!this.hasText) {
-            xmlEntitiesChildren.add(xmlEntityToAdd)
             xmlEntityToAdd.addXMLParent(this)
+            xmlEntitiesChildren.add(xmlEntityToAdd)
             return true
         }
         return false
@@ -123,9 +121,15 @@ data class XMLEntity private constructor(
         return true
     }
 
-    private fun removeXMLParent() {
-        parentXMLEntity = null
-        parentXMLDocument = null
+    fun removeXMLParent() {
+        if (parentXMLEntity != null){
+            parentXMLEntity!!.removeXMLEntityChild(this)
+            parentXMLEntity = null
+        }
+        if(parentXMLDocument != null){
+            parentXMLDocument!!.removeXMLEntity(this)
+            parentXMLDocument = null
+        }
     }
 
     fun addXMLAttribute(xmlAttributeToAdd: XMLAttribute): Boolean{
@@ -133,7 +137,6 @@ data class XMLEntity private constructor(
         return true
     }
 
-    //todo testes
     fun addXMLAttribute(xmlAttributeNameToAdd: String, xmlAttributeValueToAdd:String): Boolean{
         xmlAttributes.add(XMLAttribute(xmlAttributeNameToAdd,xmlAttributeValueToAdd))
         return true
@@ -151,7 +154,7 @@ data class XMLEntity private constructor(
 
     //todo testes
     fun removeXMLAttribute(xmlAttributeNameToRemove:String): Boolean{
-        var xmlAttributesToRemove:MutableList<XMLAttribute> = mutableListOf()
+        val xmlAttributesToRemove:MutableList<XMLAttribute> = mutableListOf()
         xmlAttributes.forEach {
             if(it.getName == xmlAttributeNameToRemove)
                 xmlAttributesToRemove.add(it)
@@ -200,7 +203,7 @@ data class XMLEntity private constructor(
         return null
     }
 
-    fun toString(depth: Int = 0):String{
+    private fun toString(depth: Int = 0):String{
         var str = ""
         str += "\t".repeat(depth) + "<"+this.name
         xmlAttributes.forEach{
@@ -220,12 +223,12 @@ data class XMLEntity private constructor(
         return str
     }
 
-    override fun toString():String{
-        return toString(0)
-    }
+    val prettyPrint:String
+        get() = toString(0)
+
 
     private fun getPath():String{
-        var path:String = ""
+        var path = ""
         fun getPathAux(xmlEntity: XMLEntity) {
             if (xmlEntity.getEntityParent == null){
                 return

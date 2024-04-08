@@ -1,11 +1,22 @@
 import java.io.File
+import java.util.StringJoiner
 
 data class XMLDocument(
-    val xmlDocumentName:String,
-    val version: String? = "1.0",
-    val enconding: String? = "UTF-8"
+    private var xmlDocumentName:String,
+    private val version: String = "1.0",
+    private val enconding: String = "UTF-8"
 ): HasVisitor {
-    val xmlEntitiesChildren: MutableList<XMLEntity> = mutableListOf<XMLEntity>()
+    private val xmlEntitiesChildren: MutableList<XMLEntity> = mutableListOf()
+
+    val getName:String
+        get() = xmlDocumentName
+    val getVersion:String
+        get() = version
+    val getEncoding:String
+        get() = enconding
+    val getChildEntities: MutableList<XMLEntity>
+        get() = xmlEntitiesChildren
+
     override fun accept(visitor: (HasVisitor) -> Boolean) {
         if(visitor(this))
             xmlEntitiesChildren.forEach {
@@ -13,51 +24,64 @@ data class XMLDocument(
             }
     }
 
+    fun changeName(newXMLDocumentName: String){
+        xmlDocumentName = newXMLDocumentName
+    }
+
     fun addXMLEntity(xmlEntityToAdd:XMLEntity): Boolean{
-        xmlEntitiesChildren.add(xmlEntityToAdd)
         xmlEntityToAdd.addXMLParent(this)
+        xmlEntitiesChildren.add(xmlEntityToAdd)
         return true
     }
     fun removeXMLEntity(xmlEntityToRemove:XMLEntity): Boolean{
         if (xmlEntitiesChildren.contains(xmlEntityToRemove)) {
             xmlEntitiesChildren.remove(xmlEntityToRemove)
+            xmlEntityToRemove.removeXMLParent()
             return true
         }
         return false
     }
 
-    fun getXMLEntities():List<XMLEntity>{
-        return xmlEntitiesChildren
-    }
-
-    fun getPrettyPrint(): String{
+    private fun toPrettyPrint(): String{
         var str = "<?xml version=\"${ this.version }\" encoding=\"${this.enconding}\"?>"
         xmlEntitiesChildren.forEach {
-            str += "\n${it.toString()}"
+            str += "\n${it.prettyPrint}"
         }
         return str
     }
 
-    fun writeToFile(file_path: String){
-        val file = File(file_path)
+    val prettyPrint:String
+        get() = toPrettyPrint()
+
+    fun writeToFile(file_path: String):String{
+        var file_path_aux = file_path
+        if (! file_path_aux.endsWith(".xml") ){
+            if(!file_path_aux.endsWith(File.separatorChar)) {
+                file_path_aux += File.separatorChar
+            }
+            file_path_aux += "${ getName }.xml"
+        }
+        val file = File(file_path_aux)
         if (!file.exists()) {
             file.createNewFile()
         }
-        file.writeText(getPrettyPrint())
+        file.writeText(prettyPrint)
+        return file.absolutePath
     }
 
-    //todo tests
-    fun writeToFile(file: File){
+    fun writeToFile(file: File):String{
         if (!file.exists()) {
             file.createNewFile()
         }
-        file.writeText(getPrettyPrint())
+        file.writeText(prettyPrint)
+        return file.absolutePath
     }
 
     fun addXMLAttributeGlobally(xmlEntityName:String, xmlAttributeNameToAdd:String, xmlAttributeValueToAdd:String){
-        val xmlAttribute=XMLAttribute(xmlAttributeNameToAdd,xmlAttributeValueToAdd)
         this.accept {
-            if (it is XMLEntity && it.getName == xmlEntityName) it.addXMLAttribute(xmlAttribute)
+            if (it is XMLEntity && it.getName == xmlEntityName) {
+                it.addXMLAttribute(xmlAttributeNameToAdd, xmlAttributeValueToAdd)
+            }
             true
         }
     }

@@ -134,6 +134,16 @@ class TestXMLEntity {
         assertEquals("", entidade0.getText)
     }
 
+    @Test
+    fun removeXMLParent(){
+        val entidade0=XMLEntity(xmlEntityName = "plano")
+        val entidade1=XMLEntity(xmlEntityName = "plano1", parentXMLEntity = entidade0)
+        assertEquals(entidade0,entidade1.getParent)
+        assertEquals(mutableListOf(entidade1),entidade0.getChildEntities)
+        entidade1.removeXMLParent()
+        assertEquals(null,entidade1.getParent)
+        assertEquals(mutableListOf<XMLEntity>(),entidade0.getChildEntities)
+    }
 
     @Test
     fun addXMLAttribute(){
@@ -212,15 +222,14 @@ class TestXMLEntity {
 
 
     @Test
-    fun test_toString(){
+    fun prettyPrint(){
         val entidade0=XMLEntity(xmlEntityName = "entidade0")
         val atributo0=XMLAttribute(name = "atributo0", value = "valor0")
         entidade0.addXMLAttribute(atributo0)
 
-        assertEquals("<entidade0 atributo0=\"valor0\"/>", entidade0.toString())
+        assertEquals("<entidade0 atributo0=\"valor0\"/>", entidade0.prettyPrint)
         entidade0.setXMLEntityText(newXMLEntityText = "texto0")
-        assertEquals("<entidade0 atributo0=\"valor0\">texto0</entidade0>", entidade0.toString())
-        assertEquals("\t<entidade0 atributo0=\"valor0\">texto0</entidade0>", entidade0.toString(1))
+        assertEquals("<entidade0 atributo0=\"valor0\">texto0</entidade0>", entidade0.prettyPrint)
 
         val entidade1=XMLEntity(xmlEntityName = "entidade1")
         val entidade2=XMLEntity(xmlEntityName = "entidade2",entidade1)
@@ -236,7 +245,7 @@ class TestXMLEntity {
                     "\t<entidade3>\n" +
                     "\t\t<entidade4>texto4</entidade4>\n" +
                     "\t</entidade3>\n" +
-                    "</entidade1>", entidade1.toString()
+                    "</entidade1>", entidade1.prettyPrint
         )
     }
 
