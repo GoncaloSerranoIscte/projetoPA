@@ -41,6 +41,15 @@ class TestXMLDocument{
         assertEquals(documento1,entidade.getParent)
         assertEquals(mutableListOf(entidade),documento1.getChildEntities)
     }
+    @Test
+    fun addAllXMLEntitiesChildren(){
+        val documento=XMLDocument(xmlDocumentName = "plano")
+        val entidade1=XMLEntity(xmlEntityName = "curso")
+        val entidade2=XMLEntity(xmlEntityName = "curso")
+        documento.addAllXMLEntities(xmlEntitiesToAdd = mutableListOf(entidade1,entidade2))
+        assertEquals(mutableListOf(entidade1,entidade2),documento.getChildEntities)
+        assertEquals(mutableListOf<XMLEntity>(), entidade1.getChildEntities)
+    }
 
     @Test
     fun removeXMLEntity(){
@@ -54,6 +63,19 @@ class TestXMLDocument{
         assertEquals(null,entidade.getParent)
     }
 
+    @Test
+    fun removeAllXMLEntities(){
+        val documento=XMLDocument(xmlDocumentName = "plano")
+        val entidade1=XMLEntity(xmlEntityName = "curso", parentXMLDocument = documento)
+        val entidade2=XMLEntity(xmlEntityName = "name", parentXMLDocument = documento)
+        assertEquals(mutableListOf(entidade1,entidade2),documento.getChildEntities)
+        assertEquals(documento,entidade1.getParent)
+        assertEquals(documento,entidade2.getParent)
+        documento.removeAllXMLEntities(xmlEntitiesToRemove = mutableListOf(entidade1,entidade2))
+        assertEquals(mutableListOf<XMLEntity>(),documento.getChildEntities)
+        assertEquals(null,entidade1.getEntityParent)
+        assertEquals(null,entidade2.getEntityParent)
+    }
     @Test
     fun prettyPrint(){
         val documento=XMLDocument(xmlDocumentName = "documento")
@@ -152,6 +174,131 @@ class TestXMLDocument{
         assertEquals(entidade0.getAttributes.size,0)
         assertEquals(entidade3.getAttributes.size,0)
         assertEquals(entidade3.getAttributes.size,0)
+    }
+
+    @Test
+    fun replaceXMLEntityNameGlobally(){
+        val documento=XMLDocument(xmlDocumentName = "documento")
+        val entidadeSup=XMLEntity(xmlEntityName = "entidadeSup",documento)
+        val entidade0=XMLEntity(xmlEntityName = "entidade2",entidadeSup)
+        val entidade1=XMLEntity(xmlEntityName = "entidade1",entidadeSup)
+        val entidade2=XMLEntity(xmlEntityName = "entidade1",entidade1)
+        val entidade3=XMLEntity(xmlEntityName = "entidade2",entidade1)
+        val entidade4=XMLEntity(xmlEntityName = "entidade1",entidade3)
+        val entidade5=XMLEntity(xmlEntityName = "entidade1",entidade3)
+        assertEquals("entidadeSup",entidadeSup.getName)
+        assertEquals("entidade1",entidade1.getName)
+        assertEquals("entidade1",entidade2.getName)
+        assertEquals("entidade1",entidade4.getName)
+        assertEquals("entidade1",entidade5.getName)
+        assertEquals("entidade2",entidade0.getName)
+        assertEquals("entidade2",entidade3.getName)
+        documento.replaceXMLEntityNameGlobally(oldXMLEntityName = "entidade1", newXMLEntityName = "entidade0")
+        assertEquals("entidadeSup",entidadeSup.getName)
+        assertEquals("entidade0",entidade1.getName)
+        assertEquals("entidade0",entidade2.getName)
+        assertEquals("entidade0",entidade4.getName)
+        assertEquals("entidade0",entidade5.getName)
+        assertEquals("entidade2",entidade0.getName)
+        assertEquals("entidade2",entidade3.getName)
+    }
+
+    @Test
+    fun replaceXMLAttributeNameGlobally(){
+        val documento=XMLDocument(xmlDocumentName = "documento")
+        val entidadeSup=XMLEntity(xmlEntityName = "entidadeSup",documento)
+        val entidade0=XMLEntity(xmlEntityName = "entidade2",entidadeSup)
+        val entidade1=XMLEntity(xmlEntityName = "entidade1",entidadeSup)
+        val entidade2=XMLEntity(xmlEntityName = "entidade1",entidade1)
+        val entidade3=XMLEntity(xmlEntityName = "entidade2",entidade1)
+        val entidade4=XMLEntity(xmlEntityName = "entidade1",entidade3)
+        val entidade5=XMLEntity(xmlEntityName = "entidade1",entidade3)
+        documento.addXMLAttributeGlobally(xmlEntityName = "entidade1", xmlAttributeNameToAdd = "atributo0", xmlAttributeValueToAdd = "valor0")
+        documento.addXMLAttributeGlobally(xmlEntityName = "entidade2", xmlAttributeNameToAdd = "atributo1", xmlAttributeValueToAdd = "valor1")
+        assertEquals(entidade1.getAttributes[0].getName,"atributo0")
+        assertEquals(entidade1.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade2.getAttributes[0].getName,"atributo0")
+        assertEquals(entidade2.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade4.getAttributes[0].getName,"atributo0")
+        assertEquals(entidade4.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade5.getAttributes[0].getName,"atributo0")
+        assertEquals(entidade5.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade0.getAttributes[0].getName,"atributo1")
+        assertEquals(entidade0.getAttributes[0].getValue,"valor1")
+        assertEquals(entidade3.getAttributes[0].getName,"atributo1")
+        assertEquals(entidade3.getAttributes[0].getValue,"valor1")
+        entidade2.addXMLAttribute(xmlAttributeNameToAdd = "atributo3", xmlAttributeValueToAdd = "valor3")
+        documento.replaceXMLAttributeNameGlobally( xmlEntityName = "entidade1", oldXMLAttributeName =  "atributo0", newXMLAttributeName = "atributo2")
+        assertEquals(entidade1.getAttributes[0].getName,"atributo2")
+        assertEquals(entidade1.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade2.getAttributes[0].getName,"atributo2")
+        assertEquals(entidade2.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade2.getAttributes[1].getName,"atributo3")
+        assertEquals(entidade2.getAttributes[1].getValue,"valor3")
+        assertEquals(entidade4.getAttributes[0].getName,"atributo2")
+        assertEquals(entidade4.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade5.getAttributes[0].getName,"atributo2")
+        assertEquals(entidade5.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade0.getAttributes[0].getName,"atributo1")
+        assertEquals(entidade0.getAttributes[0].getValue,"valor1")
+        assertEquals(entidade3.getAttributes[0].getName,"atributo1")
+        assertEquals(entidade3.getAttributes[0].getValue,"valor1")
+    }
+
+    @Test
+    fun removeXMLAttributeGlobally(){
+        val documento=XMLDocument(xmlDocumentName = "documento")
+        val entidadeSup=XMLEntity(xmlEntityName = "entidadeSup",documento)
+        val entidade0=XMLEntity(xmlEntityName = "entidade2",entidadeSup)
+        val entidade1=XMLEntity(xmlEntityName = "entidade1",entidadeSup)
+        val entidade2=XMLEntity(xmlEntityName = "entidade1",entidade1)
+        val entidade3=XMLEntity(xmlEntityName = "entidade2",entidade1)
+        val entidade4=XMLEntity(xmlEntityName = "entidade1",entidade3)
+        val entidade5=XMLEntity(xmlEntityName = "entidade1",entidade3)
+        documento.addXMLAttributeGlobally(xmlEntityName = "entidade1", xmlAttributeNameToAdd = "atributo0", xmlAttributeValueToAdd = "valor0")
+        documento.addXMLAttributeGlobally(xmlEntityName = "entidade2", xmlAttributeNameToAdd = "atributo1", xmlAttributeValueToAdd = "valor1")
+        assertEquals(entidade1.getAttributes[0].getName,"atributo0")
+        assertEquals(entidade1.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade2.getAttributes[0].getName,"atributo0")
+        assertEquals(entidade2.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade4.getAttributes[0].getName,"atributo0")
+        assertEquals(entidade4.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade5.getAttributes[0].getName,"atributo0")
+        assertEquals(entidade5.getAttributes[0].getValue,"valor0")
+        assertEquals(entidade0.getAttributes[0].getName,"atributo1")
+        assertEquals(entidade0.getAttributes[0].getValue,"valor1")
+        assertEquals(entidade3.getAttributes[0].getName,"atributo1")
+        assertEquals(entidade3.getAttributes[0].getValue,"valor1")
+        entidade2.addXMLAttribute(xmlAttributeNameToAdd = "atributo3", xmlAttributeValueToAdd = "valor3")
+        entidade3.addXMLAttribute(xmlAttributeNameToAdd = "atributo0", xmlAttributeValueToAdd = "valor0")
+        documento.removeXMLAttributeGlobally( xmlEntityName = "entidade1", xmlAttributeNameToRemove =  "atributo0")
+        assertEquals(entidade1.getAttributes.size,0)
+        assertEquals(entidade2.getAttributes.size,1)
+        assertEquals(entidade2.getAttributes[0].getName,"atributo3")
+        assertEquals(entidade2.getAttributes[0].getValue,"valor3")
+        assertEquals(entidade4.getAttributes.size,0)
+        assertEquals(entidade5.getAttributes.size,0)
+        assertEquals(entidade0.getAttributes[0].getName,"atributo1")
+        assertEquals(entidade0.getAttributes[0].getValue,"valor1")
+        assertEquals(entidade3.getAttributes[0].getName,"atributo1")
+        assertEquals(entidade3.getAttributes[0].getValue,"valor1")
+        assertEquals(entidade3.getAttributes[1].getName,"atributo0")
+        assertEquals(entidade3.getAttributes[1].getValue,"valor0")
+    }
+
+    @Test
+    fun micro_XPath(){
+        val documento=XMLDocument(xmlDocumentName = "documento")
+        val entidadeSup=XMLEntity(xmlEntityName = "entidadeSup",documento)
+        val entidade0=XMLEntity(xmlEntityName = "entidade0",entidadeSup)
+        val entidade1=XMLEntity(xmlEntityName = "entidade1",entidadeSup)
+        val entidade2=XMLEntity(xmlEntityName = "entidade1",entidade1)
+        val entidade3=XMLEntity(xmlEntityName = "entidade4",entidade1)
+        val entidade4=XMLEntity(xmlEntityName = "entidade1",entidade3)
+        val entidade5=XMLEntity(xmlEntityName = "entidade1",entidade3)
+        assertEquals(mutableListOf<XMLEntity>(),documento.micro_XPath("nenhumaEntidade"))
+        assertEquals(mutableListOf(entidade4, entidade5),documento.micro_XPath("entidade4"))
+        assertEquals(mutableListOf(entidadeSup,entidade0,entidade1,entidade2,entidade3,entidade4, entidade5),documento.micro_XPath(""))
     }
 
 

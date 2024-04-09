@@ -1,7 +1,6 @@
 import java.io.File
-import java.util.StringJoiner
 
-data class XMLDocument(
+class XMLDocument(
     private var xmlDocumentName:String,
     private val version: String = "1.0",
     private val enconding: String = "UTF-8"
@@ -33,13 +32,27 @@ data class XMLDocument(
         xmlEntitiesChildren.add(xmlEntityToAdd)
         return true
     }
-    fun removeXMLEntity(xmlEntityToRemove:XMLEntity): Boolean{
+    fun addAllXMLEntities(xmlEntitiesToAdd:List<XMLEntity>): List<XMLEntity>{
+        xmlEntitiesToAdd.forEach {
+            this.addXMLEntity(it)
+        }
+        return xmlEntitiesToAdd
+    }
+
+    fun removeXMLEntity(xmlEntityToRemove:XMLEntity): XMLEntity{
         if (xmlEntitiesChildren.contains(xmlEntityToRemove)) {
             xmlEntitiesChildren.remove(xmlEntityToRemove)
             xmlEntityToRemove.removeXMLParent()
-            return true
+            return xmlEntityToRemove
         }
-        return false
+        return xmlEntityToRemove
+    }
+
+    fun removeAllXMLEntities(xmlEntitiesToRemove:List<XMLEntity>): List<XMLEntity>{
+        xmlEntitiesToRemove.forEach {
+            this.removeXMLEntity(it)
+        }
+        return xmlEntitiesToRemove
     }
 
     private fun toPrettyPrint(): String{
@@ -88,28 +101,31 @@ data class XMLDocument(
 
     fun replaceXMLEntityNameGlobally(oldXMLEntityName: String, newXMLEntityName:String){
         this.accept {
-            if (it is XMLEntity && it.getName == oldXMLEntityName) it.setXMLEntityName(newXMLEntityName)
+            if (it is XMLEntity && it.getName == oldXMLEntityName) {
+                it.setXMLEntityName(newXMLEntityName)
+            }
             true
         }
     }
 
-    //todo testes
     fun replaceXMLAttributeNameGlobally(xmlEntityName: String, oldXMLAttributeName: String, newXMLAttributeName: String ){
         this.accept {
-            if (it is XMLEntity && it.getName == xmlEntityName) it.changeXMLAttributeName(oldXMLAttributeName,newXMLAttributeName)
+            if (it is XMLEntity && it.getName == xmlEntityName) {
+                it.changeXMLAttributeName(oldXMLAttributeName,newXMLAttributeName)
+            }
             true
         }
     }
 
-    //todo testes
     fun removeXMLAttributeGlobally(xmlEntityName: String, xmlAttributeNameToRemove: String){
         this.accept {
-            if (it is XMLEntity && it.getName == xmlEntityName) it.removeXMLAttribute(xmlAttributeNameToRemove)
+            if (it is XMLEntity && it.getName == xmlEntityName)
+                it.removeXMLAttribute(xmlAttributeNameToRemove)
             true
         }
     }
 
-    fun micro_XPath(path: String):MutableList<XMLEntity>{
+    fun micro_XPath(path: String): List<XMLEntity>{
         val xmlEntityWithPath:MutableList<XMLEntity> = mutableListOf()
         this.accept {
             if(it is XMLEntity){

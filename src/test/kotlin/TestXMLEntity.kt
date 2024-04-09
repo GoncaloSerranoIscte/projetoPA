@@ -150,9 +150,8 @@ class TestXMLEntity {
         val entidade0=XMLEntity(xmlEntityName = "plano")
         val atributo0=XMLAttribute(name = "dia", value = "Sabado")
         entidade0.addXMLAttribute(xmlAttributeToAdd = atributo0)
-        entidade0.addXMLAttribute(xmlAttributeNameToAdd = "mes", xmlAttributeValueToAdd = "janeiro")
-        val atributo1=XMLAttribute(name = "mes", value = "janeiro")
-        assertEquals(mutableListOf(atributo0,atributo1), entidade0.getAttributes)
+        val atributo1:XMLAttribute = entidade0.addXMLAttribute(xmlAttributeNameToAdd = "mes", xmlAttributeValueToAdd = "janeiro")
+        assertEquals(mutableListOf(atributo0,atributo1),entidade0.getAttributes)
     }
 
     @Test

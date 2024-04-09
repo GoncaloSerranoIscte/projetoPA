@@ -1,6 +1,4 @@
-import com.sun.jdi.Value
-
-data class XMLAttribute(
+class XMLAttribute(
     private var name:String,
     private var value:String
 ) {

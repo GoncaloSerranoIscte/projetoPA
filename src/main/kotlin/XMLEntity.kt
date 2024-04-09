@@ -1,4 +1,4 @@
-data class XMLEntity private constructor(
+class XMLEntity private constructor(
     private var name:String,
     private var parentXMLDocument: XMLDocument?=null,
     private var parentXMLEntity: XMLEntity?=null
@@ -46,12 +46,10 @@ data class XMLEntity private constructor(
 
     override fun accept(visitor: (HasVisitor) -> Boolean) {
         if(visitor(this))
-            xmlEntitiesChildren.forEach {
+            getChildEntities.forEach {
                 it.accept(visitor)
             }
     }
-
-
 
 
     fun addXMLEntityChild(xmlEntityToAdd: XMLEntity): Boolean{
@@ -64,43 +62,43 @@ data class XMLEntity private constructor(
     }
 
     fun addAllXMLEntitiesChildren(xmlEntitiesToAdd: List<XMLEntity>): Boolean{
-        if (!this.hasText) {
-            xmlEntitiesToAdd.forEach {
-                this.xmlEntitiesChildren.add(it)
-                it.addXMLParent(this)
-            }
-            return true
-        }
-        return false
-    }
-
-    //todo internal is not internaling ASK stor
-    internal fun addXMLParent(newXMLDocumentParent: XMLDocument){
-        this.removeXMLParent()
-        this.parentXMLDocument=newXMLDocumentParent
-    }
-    private fun addXMLParent(newXMLEntityParent: XMLEntity){
-        this.removeXMLParent()
-        this.parentXMLEntity=newXMLEntityParent
-    }
-
-    fun removeXMLEntityChild(xmlEntityToRemove:XMLEntity): Boolean{
-        if (xmlEntitiesChildren.contains(xmlEntityToRemove)) {
-            xmlEntitiesChildren.remove(xmlEntityToRemove)
-            xmlEntityToRemove.removeXMLParent()
-            return true
-        }
-        return false
-    }
-
-    fun removeAllXMLEntitiesChildren(xmlEntitiesToRemove: List<XMLEntity>): Boolean{
-        xmlEntitiesToRemove.forEach {
-            if (xmlEntitiesChildren.contains(it)) {
-                xmlEntitiesChildren.remove(it)
-                it.removeXMLParent()
+        xmlEntitiesToAdd.forEach {
+            if(!this.addXMLEntityChild(it)){
+                return false
             }
         }
         return true
+    }
+
+    //todo internal is not internaling ASK stor
+    internal fun addXMLParent(newXMLParent: Any):Boolean{
+        if(!(newXMLParent is XMLDocument || newXMLParent is XMLEntity)) {
+            return false
+        }
+        this.removeXMLParent()
+        if(newXMLParent is XMLDocument){
+            this.parentXMLDocument=newXMLParent
+        }
+        if (newXMLParent is XMLEntity){
+            this.parentXMLEntity=newXMLParent
+        }
+        return true
+    }
+
+    fun removeXMLEntityChild(xmlEntityToRemove:XMLEntity): XMLEntity{
+        if (xmlEntitiesChildren.contains(xmlEntityToRemove)) {
+            xmlEntitiesChildren.remove(xmlEntityToRemove)
+            xmlEntityToRemove.removeXMLParent()
+            return xmlEntityToRemove
+        }
+        return xmlEntityToRemove
+    }
+
+    fun removeAllXMLEntitiesChildren(xmlEntitiesToRemove: List<XMLEntity>): List<XMLEntity>{
+        xmlEntitiesToRemove.forEach {
+            this.removeXMLEntityChild(it)
+        }
+        return xmlEntitiesToRemove
     }
 
     fun setXMLEntityName(newXMLEntityName: String): Boolean{
@@ -132,44 +130,40 @@ data class XMLEntity private constructor(
         }
     }
 
-    fun addXMLAttribute(xmlAttributeToAdd: XMLAttribute): Boolean{
+    fun addXMLAttribute(xmlAttributeToAdd: XMLAttribute): XMLAttribute{
         xmlAttributes.add(xmlAttributeToAdd)
-        return true
+        return xmlAttributeToAdd
     }
 
-    fun addXMLAttribute(xmlAttributeNameToAdd: String, xmlAttributeValueToAdd:String): Boolean{
-        xmlAttributes.add(XMLAttribute(xmlAttributeNameToAdd,xmlAttributeValueToAdd))
-        return true
+    fun addXMLAttribute(xmlAttributeNameToAdd: String, xmlAttributeValueToAdd:String): XMLAttribute{
+        var xmlAttribute = XMLAttribute(xmlAttributeNameToAdd,xmlAttributeValueToAdd)
+        return this.addXMLAttribute(xmlAttribute)
     }
     fun addAllXMLAttribute(xmlAttributesToAdd: List<XMLAttribute>): Boolean{
         xmlAttributesToAdd.forEach {
-            xmlAttributes.add(it)
+            this.addXMLAttribute(it)
         }
         return true
     }
-    fun removeXMLAttribute(xmlAttributeToRemove:XMLAttribute): Boolean{
+    fun removeXMLAttribute(xmlAttributeToRemove:XMLAttribute): XMLAttribute{
         xmlAttributes.remove(xmlAttributeToRemove)
-        return true
+        return xmlAttributeToRemove
     }
 
-    //todo testes
-    fun removeXMLAttribute(xmlAttributeNameToRemove:String): Boolean{
+    fun removeAllXMLAttributes(xmlAttributesToRemove:List<XMLAttribute>): List<XMLAttribute>{
+        xmlAttributesToRemove.forEach {
+            this.removeXMLAttribute(it)
+        }
+        return xmlAttributesToRemove
+    }
+
+    fun removeXMLAttribute(xmlAttributeNameToRemove:String): List<XMLAttribute>{
         val xmlAttributesToRemove:MutableList<XMLAttribute> = mutableListOf()
         xmlAttributes.forEach {
             if(it.getName == xmlAttributeNameToRemove)
                 xmlAttributesToRemove.add(it)
         }
-        xmlAttributesToRemove.forEach {
-            xmlAttributes.remove(it)
-        }
-        return true
-    }
-
-    fun removeAllXMLAttributes(xmlAttributesToRemove:List<XMLAttribute>): Boolean{
-        xmlAttributesToRemove.forEach {
-            xmlAttributes.remove(it)
-        }
-        return true
+        return this.removeAllXMLAttributes(xmlAttributesToRemove)
     }
 
     fun changeXMLAttributeName(oldXMLAttributeName:String, newXMLAttributeName:String):Boolean{
@@ -190,8 +184,8 @@ data class XMLEntity private constructor(
 
     fun replaceXMLAttribute(oldXMLAttribute: XMLAttribute, newXMLAttribute: XMLAttribute): Boolean{
         if (xmlAttributes.contains(oldXMLAttribute)){
-            xmlAttributes.remove(oldXMLAttribute)
-            xmlAttributes.add(newXMLAttribute)
+            this.removeXMLAttribute(oldXMLAttribute)
+            this.addXMLAttribute(newXMLAttribute)
             return true
         }
         return false
@@ -205,7 +199,7 @@ data class XMLEntity private constructor(
 
     private fun toString(depth: Int = 0):String{
         var str = ""
-        str += "\t".repeat(depth) + "<"+this.name
+        str += "\t".repeat(depth) + "<${ this.name }"
         xmlAttributes.forEach{
             str += " ${it.getName}=\"${it.getValue}\""
         }
@@ -226,7 +220,6 @@ data class XMLEntity private constructor(
     val prettyPrint:String
         get() = toString(0)
 
-
     private fun getPath():String{
         var path = ""
         fun getPathAux(xmlEntity: XMLEntity) {
@@ -234,7 +227,7 @@ data class XMLEntity private constructor(
                 return
             }
             else {
-                path = "${xmlEntity.getEntityParent?.name}/${path}"
+                path = "${xmlEntity.getEntityParent?.getName}/${path}"
                 getPathAux(xmlEntity.getEntityParent!!)
             }
         }
