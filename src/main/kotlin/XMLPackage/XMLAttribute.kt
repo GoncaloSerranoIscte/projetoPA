@@ -1,3 +1,5 @@
+package XMLPackage
+
 class XMLAttribute(
     private var name:String,
     private var value:String

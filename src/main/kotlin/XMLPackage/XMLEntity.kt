@@ -1,3 +1,5 @@
+package XMLPackage
+
 class XMLEntity private constructor(
     private var name:String,
     private var parentXMLDocument: XMLDocument?=null,
@@ -85,7 +87,7 @@ class XMLEntity private constructor(
         return true
     }
 
-    fun removeXMLEntityChild(xmlEntityToRemove:XMLEntity): XMLEntity{
+    fun removeXMLEntityChild(xmlEntityToRemove: XMLEntity): XMLEntity {
         if (xmlEntitiesChildren.contains(xmlEntityToRemove)) {
             xmlEntitiesChildren.remove(xmlEntityToRemove)
             xmlEntityToRemove.removeXMLParent()
@@ -130,12 +132,12 @@ class XMLEntity private constructor(
         }
     }
 
-    fun addXMLAttribute(xmlAttributeToAdd: XMLAttribute): XMLAttribute{
+    fun addXMLAttribute(xmlAttributeToAdd: XMLAttribute): XMLAttribute {
         xmlAttributes.add(xmlAttributeToAdd)
         return xmlAttributeToAdd
     }
 
-    fun addXMLAttribute(xmlAttributeNameToAdd: String, xmlAttributeValueToAdd:String): XMLAttribute{
+    fun addXMLAttribute(xmlAttributeNameToAdd: String, xmlAttributeValueToAdd:String): XMLAttribute {
         var xmlAttribute = XMLAttribute(xmlAttributeNameToAdd,xmlAttributeValueToAdd)
         return this.addXMLAttribute(xmlAttribute)
     }
@@ -145,7 +147,7 @@ class XMLEntity private constructor(
         }
         return true
     }
-    fun removeXMLAttribute(xmlAttributeToRemove:XMLAttribute): XMLAttribute{
+    fun removeXMLAttribute(xmlAttributeToRemove: XMLAttribute): XMLAttribute {
         xmlAttributes.remove(xmlAttributeToRemove)
         return xmlAttributeToRemove
     }

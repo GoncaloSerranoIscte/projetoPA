@@ -1,3 +1,5 @@
+package XMLPackage
+
 import java.io.File
 
 class XMLDocument(
@@ -5,7 +7,7 @@ class XMLDocument(
     private val version: String = "1.0",
     private val enconding: String = "UTF-8"
 ): HasVisitor {
-    private val xmlEntitiesChildren: MutableList<XMLEntity> = mutableListOf()
+    private var xmlEntityChild: XMLEntity? = null
 
     val getName:String
         get() = xmlDocumentName
@@ -13,52 +15,46 @@ class XMLDocument(
         get() = version
     val getEncoding:String
         get() = enconding
-    val getChildEntities: MutableList<XMLEntity>
-        get() = xmlEntitiesChildren
+    val getEntityChild: XMLEntity?
+        get() = xmlEntityChild
+    val hasEntityChild: Boolean
+        get() = getEntityChild != null
+
 
     override fun accept(visitor: (HasVisitor) -> Boolean) {
-        if(visitor(this))
-            xmlEntitiesChildren.forEach {
-                it.accept(visitor)
-            }
+        if(visitor(this)) {
+            getEntityChild?.accept(visitor)
+        }
     }
 
     fun changeName(newXMLDocumentName: String){
         xmlDocumentName = newXMLDocumentName
     }
 
-    fun addXMLEntity(xmlEntityToAdd:XMLEntity): Boolean{
+    fun addXMLEntity(xmlEntityToAdd: XMLEntity): Boolean{
+        if(hasEntityChild){
+            return false
+        }
         xmlEntityToAdd.addXMLParent(this)
-        xmlEntitiesChildren.add(xmlEntityToAdd)
+        xmlEntityChild = xmlEntityToAdd
         return true
     }
-    fun addAllXMLEntities(xmlEntitiesToAdd:List<XMLEntity>): List<XMLEntity>{
-        xmlEntitiesToAdd.forEach {
-            this.addXMLEntity(it)
-        }
-        return xmlEntitiesToAdd
-    }
 
-    fun removeXMLEntity(xmlEntityToRemove:XMLEntity): XMLEntity{
-        if (xmlEntitiesChildren.contains(xmlEntityToRemove)) {
-            xmlEntitiesChildren.remove(xmlEntityToRemove)
-            xmlEntityToRemove.removeXMLParent()
-            return xmlEntityToRemove
+    fun removeXMLEntity(xmlEntityToRemove: XMLEntity): Boolean {
+        if (hasEntityChild && xmlEntityChild!! == xmlEntityToRemove) {
+            xmlEntityChild = null
+            if (xmlEntityToRemove.getDocumentParent != null) {
+                xmlEntityToRemove.removeXMLParent()
+            }
+            return true
         }
-        return xmlEntityToRemove
-    }
-
-    fun removeAllXMLEntities(xmlEntitiesToRemove:List<XMLEntity>): List<XMLEntity>{
-        xmlEntitiesToRemove.forEach {
-            this.removeXMLEntity(it)
-        }
-        return xmlEntitiesToRemove
+        return false
     }
 
     private fun toPrettyPrint(): String{
         var str = "<?xml version=\"${ this.version }\" encoding=\"${this.enconding}\"?>"
-        xmlEntitiesChildren.forEach {
-            str += "\n${it.prettyPrint}"
+        if (hasEntityChild){
+            str += "\n${xmlEntityChild!!.prettyPrint}"
         }
         return str
     }
