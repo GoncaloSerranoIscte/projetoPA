@@ -1,8 +1,8 @@
 package TestXMLPackage
 
-import XMLPackage.XMLAttribute
-import XMLPackage.XMLDocument
-import XMLPackage.XMLEntity
+import xmlPackage.XMLAttribute
+import xmlPackage.XMLDocument
+import xmlPackage.XMLEntity
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 

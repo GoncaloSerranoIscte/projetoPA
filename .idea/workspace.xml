@@ -3,13 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/HasVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/XMLPackage/HasVisitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/XMLAttribute.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/XMLPackage/XMLAttribute.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/XMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/XMLPackage/XMLDocument.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/XMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/XMLPackage/XMLEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLAttribute.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLAttribute.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLDocument.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/XMLPackage/HasVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/HasVisitor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/XMLPackage/XMLAttribute.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLAttribute.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/XMLPackage/XMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLDocument.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/XMLPackage/XMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLAttribute.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLAttribute.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLDocument.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLEntity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,23 +37,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/4ano/workspaceIntelli/projetoPA",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/4ano/workspaceIntelli/projetoPA&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\4ano\workspaceIntelli\projetoPA\src\test\Testfiles" />
@@ -125,8 +125,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in projetoPA" />
-        <item itemvalue="JUnit.TestXMLDocument.addXMLEntity" />
         <item itemvalue="JUnit.TestXMLPackage in projetoPA" />
+        <item itemvalue="JUnit.TestXMLDocument.addXMLEntity" />
         <item itemvalue="JUnit.TestXMLDocument.removeXMLAttributeGlobally" />
         <item itemvalue="JUnit.TestXMLDocument.replaceXMLAttributeNameGlobally" />
       </list>
@@ -152,6 +152,8 @@
       <workItem from="1712596935550" duration="6205000" />
       <workItem from="1712682899039" duration="552000" />
       <workItem from="1712683474420" duration="4486000" />
+      <workItem from="1712860315771" duration="1699000" />
+      <workItem from="1713098479793" duration="4797000" />
     </task>
     <servers />
   </component>

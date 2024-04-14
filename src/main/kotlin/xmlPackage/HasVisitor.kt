@@ -1,4 +1,4 @@
-package XMLPackage
+package xmlPackage
 
 interface HasVisitor {
     fun accept(visitor: (HasVisitor) -> Boolean) {

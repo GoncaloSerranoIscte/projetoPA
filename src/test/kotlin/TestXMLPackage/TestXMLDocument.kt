@@ -1,8 +1,8 @@
 package TestXMLPackage
 
-import XMLPackage.XMLAttribute
-import XMLPackage.XMLDocument
-import XMLPackage.XMLEntity
+import xmlPackage.XMLAttribute
+import xmlPackage.XMLDocument
+import xmlPackage.XMLEntity
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -285,9 +285,9 @@ class TestXMLDocument{
         val entidade3= XMLEntity(xmlEntityName = "entidade4",entidade1)
         val entidade4= XMLEntity(xmlEntityName = "entidade1",entidade3)
         val entidade5= XMLEntity(xmlEntityName = "entidade1",entidade3)
-        assertEquals(mutableListOf<XMLEntity>(),documento.micro_XPath("nenhumaEntidade"))
-        assertEquals(mutableListOf(entidade4, entidade5),documento.micro_XPath("entidade4"))
-        assertEquals(mutableListOf(entidadeSup,entidade0,entidade1,entidade2,entidade3,entidade4, entidade5),documento.micro_XPath(""))
+        assertEquals(mutableListOf<XMLEntity>(),documento.microXPath("nenhumaEntidade"))
+        assertEquals(mutableListOf(entidade4, entidade5),documento.microXPath("entidade4"))
+        assertEquals(mutableListOf(entidadeSup,entidade0,entidade1,entidade2,entidade3,entidade4, entidade5),documento.microXPath(""))
     }
 
 
