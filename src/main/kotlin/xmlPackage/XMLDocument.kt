@@ -117,14 +117,14 @@ class XMLDocument(
      * @return the path of the File that was written
      */
     fun writeToFile(file_path: String):String{
-        var file_path_aux = file_path
-        if (! file_path_aux.endsWith(".xml") ){
-            if(!file_path_aux.endsWith(File.separatorChar)) {
-                file_path_aux += File.separatorChar
+        var filePathAux = file_path
+        if (! filePathAux.endsWith(".xml") ){
+            if(!filePathAux.endsWith(File.separatorChar)) {
+                filePathAux += File.separatorChar
             }
-            file_path_aux += "${ getName }.xml"
+            filePathAux += "${ getName }.xml"
         }
-        val file = File(file_path_aux)
+        val file = File(filePathAux)
         if (!file.exists()) {
             file.createNewFile()
         }
@@ -209,14 +209,14 @@ class XMLDocument(
      * @return List of XMLEntities whose path ends with the path passed as a parameter
      */
     fun microXPath(path: String): List<XMLEntity>{
-        val xmlEntityWithPath:MutableList<XMLEntity> = mutableListOf()
+        val xmlEntitiesWithPath:MutableList<XMLEntity> = mutableListOf()
         this.accept {
             if(it is XMLEntity){
                 if(it.getPath.endsWith(path))
-                    xmlEntityWithPath.add(it)
+                    xmlEntitiesWithPath.add(it)
             }
             true
         }
-        return xmlEntityWithPath
+        return xmlEntitiesWithPath
     }
 }

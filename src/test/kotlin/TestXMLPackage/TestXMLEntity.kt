@@ -259,10 +259,10 @@ class TestXMLEntity {
         val entidade1= XMLEntity(xmlEntityName = "entidade1",entidadeSup)
         val entidade3= XMLEntity(xmlEntityName = "entidade4",entidade1)
         val entidade5= XMLEntity(xmlEntityName = "entidade1",entidade3)
-        assertEquals("",entidadeSup.getPath)
-        assertEquals("entidadeSup",entidade1.getPath)
-        assertEquals("entidadeSup/entidade1",entidade3.getPath)
-        assertEquals("entidadeSup/entidade1/entidade4",entidade5.getPath)
+        assertEquals("entidadeSup",entidadeSup.getPath)
+        assertEquals("entidadeSup/entidade1",entidade1.getPath)
+        assertEquals("entidadeSup/entidade1/entidade4",entidade3.getPath)
+        assertEquals("entidadeSup/entidade1/entidade4/entidade1",entidade5.getPath)
     }
 
 }

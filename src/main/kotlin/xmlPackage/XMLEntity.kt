@@ -379,7 +379,7 @@ class XMLEntity private constructor(
             }
         }
         getPathAux(this)
-        return path.removeSuffix("/")
+        return path + this.getName
     }
 
     /**

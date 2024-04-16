@@ -286,7 +286,8 @@ class TestXMLDocument{
         val entidade4= XMLEntity(xmlEntityName = "entidade1",entidade3)
         val entidade5= XMLEntity(xmlEntityName = "entidade1",entidade3)
         assertEquals(mutableListOf<XMLEntity>(),documento.microXPath("nenhumaEntidade"))
-        assertEquals(mutableListOf(entidade4, entidade5),documento.microXPath("entidade4"))
+        assertEquals(mutableListOf(entidade4, entidade5),documento.microXPath("entidade4/entidade1"))
+        assertEquals(mutableListOf(entidade3),documento.microXPath("entidade4"))
         assertEquals(mutableListOf(entidadeSup,entidade0,entidade1,entidade2,entidade3,entidade4, entidade5),documento.microXPath(""))
     }
 
