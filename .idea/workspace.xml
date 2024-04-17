@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLDocument.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLEntity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLAttribute.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLAttribute.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLDocument.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLEntity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +40,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/4ano/workspaceIntelli",
+    "last_opened_file_path": "D:/4ano/workspaceIntelli/projetoPAIncrivel/projetoPAIncrivel",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -158,7 +154,7 @@
       <workItem from="1712683474420" duration="4486000" />
       <workItem from="1712860315771" duration="1699000" />
       <workItem from="1713098479793" duration="4797000" />
-      <workItem from="1713289431136" duration="4307000" />
+      <workItem from="1713289431136" duration="4721000" />
     </task>
     <servers />
   </component>

@@ -12,6 +12,7 @@ class TestXMLAttribute {
     fun testchangeName(){
         val entidade0= XMLEntity(xmlEntityName = "plano")
         val atributo0= XMLAttribute(name = "nome0", value = "valor0")
+        entidade0.addXMLAttribute(xmlAttributeToAdd = atributo0)
         atributo0.changeXMLAttributeName(newXMLAttributeName = "nome1")
         assertEquals("nome1", atributo0.getName)
         assertEquals("nome1", entidade0.getAttributes[0].getName)
