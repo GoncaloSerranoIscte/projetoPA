@@ -232,9 +232,13 @@ class XMLEntity private constructor(
      * @param xmlAttributeToAdd XMLAttribute instance to add to this instance
      * @return the XMLAttribute added
      */
-    fun addXMLAttribute(xmlAttributeToAdd: XMLAttribute): XMLAttribute {
+    fun addXMLAttribute(xmlAttributeToAdd: XMLAttribute): XMLAttribute? { 
+        if(getAttributes.any { it.getName == xmlAttributeToAdd.getName }){
+            return null
+        }
         xmlAttributes.add(xmlAttributeToAdd)
         return xmlAttributeToAdd
+
     }
 
     /**
@@ -243,7 +247,7 @@ class XMLEntity private constructor(
      * @param xmlAttributeValueToAdd value of the new XMLAttribute to add
      * @return the XMLAttribute added
      */
-    fun addXMLAttribute(xmlAttributeNameToAdd: String, xmlAttributeValueToAdd:String): XMLAttribute {
+    fun addXMLAttribute(xmlAttributeNameToAdd: String, xmlAttributeValueToAdd:String): XMLAttribute? {
         var xmlAttribute = XMLAttribute(xmlAttributeNameToAdd,xmlAttributeValueToAdd)
         return this.addXMLAttribute(xmlAttribute)
     }

@@ -2,7 +2,7 @@ package xmlPackage
 
 /**
  * @constructor creates an XMLAttribute instance
- * @param name the name of the new XMLAttribute
+ * @param name the name of the new XMLAttribute if the name given has a " "(space) replaces it with "_"(underscore)
  * @param value the value of the new XMLAttribute
  * @return the new XMLAttribute instance with the defined name and value
  */
@@ -10,6 +10,9 @@ class XMLAttribute(
     private var name:String,
     private var value:String
 ) {
+    init{
+        changeXMLAttributeName(getName)
+    }
     /**
      * Gets the name of this instance
      * @return the name of this instance
@@ -25,11 +28,11 @@ class XMLAttribute(
         get() = value
 
     /**
-     * Changed the name of this instance
+     * Changed the name of this instance if the name given has a " "(space) replaces it with "_"(underscore)
      * @param newXMLAttributeName The new name to be defined
      */
     fun changeXMLAttributeName(newXMLAttributeName: String){
-        name=newXMLAttributeName
+        name=newXMLAttributeName.replace(" ", "_")
     }
 
     /**

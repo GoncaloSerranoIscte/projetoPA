@@ -14,8 +14,10 @@ class TestXMLAttribute {
         val atributo0= XMLAttribute(name = "nome0", value = "valor0")
         entidade0.addXMLAttribute(xmlAttributeToAdd = atributo0)
         atributo0.changeXMLAttributeName(newXMLAttributeName = "nome1")
+        val atributo1= XMLAttribute(name = "nome com ' '", value = "ola")
         assertEquals("nome1", atributo0.getName)
         assertEquals("nome1", entidade0.getAttributes[0].getName)
+        assertEquals("nome_com_'_'", atributo1.getName)
     }
 
     @Test

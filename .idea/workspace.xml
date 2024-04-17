@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLAttribute.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLAttribute.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLAttribute.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLAttribute.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TestXMLPackage/TestXMLEntity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +42,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/4ano/workspaceIntelli/projetoPAIncrivel/projetoPAIncrivel",
+    "last_opened_file_path": "D:/4ano/workspaceIntelli/projetoPA",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -98,11 +100,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestXMLDocument.removeXMLAttributeGlobally" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestXMLEntity.addXMLAttribute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="projetoPA" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestXMLDocument" />
-      <option name="METHOD_NAME" value="removeXMLAttributeGlobally" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TestXMLPackage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="TestXMLPackage" />
+      <option name="MAIN_CLASS_NAME" value="TestXMLPackage.TestXMLEntity" />
+      <option name="METHOD_NAME" value="addXMLAttribute" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -125,10 +133,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TestXMLAttribute.testchangeName" />
-        <item itemvalue="JUnit.TestXMLPackage in projetoPA" />
+        <item itemvalue="JUnit.TestXMLEntity.addXMLAttribute" />
         <item itemvalue="JUnit.All in projetoPA" />
+        <item itemvalue="JUnit.TestXMLPackage in projetoPA" />
         <item itemvalue="JUnit.TestXMLDocument.addXMLEntity" />
-        <item itemvalue="JUnit.TestXMLDocument.removeXMLAttributeGlobally" />
       </list>
     </recent_temporary>
   </component>
@@ -155,6 +163,7 @@
       <workItem from="1712860315771" duration="1699000" />
       <workItem from="1713098479793" duration="4797000" />
       <workItem from="1713289431136" duration="4721000" />
+      <workItem from="1713374365145" duration="1659000" />
     </task>
     <servers />
   </component>
