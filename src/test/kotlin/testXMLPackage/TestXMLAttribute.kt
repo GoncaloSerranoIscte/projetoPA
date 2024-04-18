@@ -1,10 +1,10 @@
-package TestXMLPackage
+package testXMLPackage
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import xmlPackage.XMLAttribute
 import xmlPackage.XMLDocument
 import xmlPackage.XMLEntity
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.Test
 
 class TestXMLAttribute {
 

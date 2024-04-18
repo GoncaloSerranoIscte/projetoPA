@@ -1,4 +1,4 @@
-package TestXMLPackage
+package testXMLPackage
 
 import xmlPackage.XMLAttribute
 import xmlPackage.XMLDocument

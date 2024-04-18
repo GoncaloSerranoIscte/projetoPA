@@ -1,10 +1,11 @@
-package TestXMLPackage
+package testXMLPackage
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Test
 import xmlPackage.XMLAttribute
 import xmlPackage.XMLDocument
 import xmlPackage.XMLEntity
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.Test
 
 class TestXMLEntity {
 
@@ -202,7 +203,7 @@ class TestXMLEntity {
         val atributo1= XMLAttribute(name = "mes", value = "Abril")
         entidade0.addAllXMLAttribute(xmlAttributesToAdd = mutableListOf(atributo0,atributo1))
         entidade0.changeXMLAttributeName(oldXMLAttributeName = "dia", newXMLAttributeName = "dia da semana")
-        assertEquals("dia da semana",entidade0.getAttributes[0].getName)
+        assertEquals("dia_da_semana",entidade0.getAttributes[0].getName)
         assertEquals("mes",entidade0.getAttributes[1].getName)
     }
 
