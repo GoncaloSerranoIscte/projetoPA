@@ -1,5 +1,7 @@
 package xmlPackage
 
+import kotlin.reflect.KClass
+
 /**
  *  Change the name of the Property or Class to the given name
  */
@@ -23,3 +25,10 @@ annotation class IsAttribute
  */
 @Target(AnnotationTarget.PROPERTY)
 annotation class IsEntity
+
+/**
+ *
+ */
+//todo
+@Target(AnnotationTarget.CLASS,AnnotationTarget.PROPERTY)
+annotation class XmlString(val stringRefactor:KClass<*>)

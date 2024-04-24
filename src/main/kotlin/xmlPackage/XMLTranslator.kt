@@ -7,7 +7,7 @@ import kotlin.reflect.full.hasAnnotation
 
 
 class XMLTranslator(
-    val objectToTranslate: Any
+    private val objectToTranslate: Any
 ) {
     val entity:XMLEntity
         get() = toXMLEntity()
@@ -15,7 +15,6 @@ class XMLTranslator(
     private fun toXMLEntity():XMLEntity{
         val entity = XMLEntity(xmlEntityName = getName())
         entity.addAllXMLAttribute(xmlAttributesToAdd = getXMLAttributes())
-        println()
         return entity
     }
 
@@ -24,12 +23,32 @@ class XMLTranslator(
         return "${clazz.findAnnotation<OverrideName>()?.name ?: clazz.simpleName}"
     }
 
+    //todo validar que o construtor recebe um String, dar "rollback" caso esta merda dÊ nulll
     private fun getXMLAttributes():List<XMLAttribute>{
-        val xmlAttributesToAdd:MutableList<XMLAttribute> = mutableListOf<XMLAttribute>()
+        val xmlAttributesToAdd:MutableList<XMLAttribute> = mutableListOf()
         val clazz: KClass<*> = objectToTranslate::class
         clazz.declaredMemberProperties.filter { it.hasAnnotation<IsAttribute>() && !it.hasAnnotation<Ignore>()}.forEach{
-            xmlAttributesToAdd.add(XMLAttribute(name = it.findAnnotation<OverrideName>()?.name ?: it.name, value = it.call(objectToTranslate).toString()))
+            val nameAt:String = it.findAnnotation<OverrideName>()?.name ?: it.name
+            val valueAt:String = try {
+                    it.findAnnotation<XmlString>()!!.stringRefactor.constructors.filter { it2 -> it2.parameters.size == 1 }
+                        .random().call(it.call(objectToTranslate).toString()).toString()
+                }catch (e: Exception){
+                    it.call(objectToTranslate).toString()
+            }
+
+            xmlAttributesToAdd.add(XMLAttribute(name = nameAt, value = valueAt))
         }
         return xmlAttributesToAdd
     }
+/*
+    private fun getXMLEntities():List<XMLEntity>{
+        val xmlAttributesToAdd:MutableList<XMLEntity> = mutableListOf()
+        val clazz: KClass<*> = objectToTranslate::class
+        clazz.declaredMemberProperties.filter { it.hasAnnotation<IsAttribute>() && !it.hasAnnotation<Ignore>()}.forEach{
+            
+            //xmlAttributesToAdd.add(XMLAttribute(name = it.findAnnotation<OverrideName>()?.name ?: it.name, value = it.call(objectToTranslate).toString()))
+        }
+        return xmlAttributesToAdd
+    }
+ */
 }

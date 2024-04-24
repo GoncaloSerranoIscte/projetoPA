@@ -1,7 +1,5 @@
-import xmlPackage.Ignore
-import xmlPackage.IsAttribute
-import xmlPackage.IsEntity
-import xmlPackage.OverrideName
+
+import xmlPackage.*
 
 @OverrideName(name = "Maça")
 class Maca()
@@ -12,8 +10,11 @@ class Laranja()
 class ComponenteAvaliacao (
     @IsAttribute
     val nome: String,
+    @XmlString(AddPercentage::class)
     @IsAttribute
-    val peso: Int
+    val peso: Int,
+    @Ignore
+    val ano:Int
 )
 
 @OverrideName(name = "fuc")
@@ -31,3 +32,11 @@ class FUC (
     @IsEntity
     val EntidadeComVariosAtributos: List<ComponenteAvaliacao>
 )
+
+class AddPercentage(
+    private val text:String
+){
+    override fun toString():String{
+        return "$text%"
+    }
+}
