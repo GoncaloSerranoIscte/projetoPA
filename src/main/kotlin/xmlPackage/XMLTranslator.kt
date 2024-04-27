@@ -12,9 +12,24 @@ class XMLTranslator(
     val entity:XMLEntity
         get() = toXMLEntity()
 
+    private val defaultEntitiesTypes: MutableList<Any>
+        get() = mutableListOf(1::class,2.0::class,false::class, ""::class)
+
+    private val clazz:KClass<*>
+        get() = objectToTranslate::class
+
     private fun toXMLEntity():XMLEntity{
-        val entity = XMLEntity(xmlEntityName = getName())
+        var entity = XMLEntity(xmlEntityName = getName())
         entity.addAllXMLAttribute(xmlAttributesToAdd = getXMLAttributes())
+        entity.addAllXMLEntitiesChildren(xmlEntitiesToAdd = getXMLEntities())
+        if (clazz.hasAnnotation<XmlAdapter>()){
+            try {
+                entity = clazz.findAnnotation<XmlString>()!!.stringRefactor.constructors.filter { it -> it.parameters.size == 1 }
+                    .random().call(entity) as XMLEntity
+            }catch (e: Exception){
+                print("Não entendo como fazer nem oque fazer ao certo")
+            }
+        }
         return entity
     }
 
@@ -26,7 +41,6 @@ class XMLTranslator(
     //todo validar que o construtor recebe um String, dar "rollback" caso esta merda dÊ nulll
     private fun getXMLAttributes():List<XMLAttribute>{
         val xmlAttributesToAdd:MutableList<XMLAttribute> = mutableListOf()
-        val clazz: KClass<*> = objectToTranslate::class
         clazz.declaredMemberProperties.filter { it.hasAnnotation<IsAttribute>() && !it.hasAnnotation<Ignore>()}.forEach{
             val nameAt:String = it.findAnnotation<OverrideName>()?.name ?: it.name
             val valueAt:String = try {
@@ -35,20 +49,39 @@ class XMLTranslator(
                 }catch (e: Exception){
                     it.call(objectToTranslate).toString()
             }
-
             xmlAttributesToAdd.add(XMLAttribute(name = nameAt, value = valueAt))
         }
         return xmlAttributesToAdd
     }
-/*
+
     private fun getXMLEntities():List<XMLEntity>{
-        val xmlAttributesToAdd:MutableList<XMLEntity> = mutableListOf()
-        val clazz: KClass<*> = objectToTranslate::class
-        clazz.declaredMemberProperties.filter { it.hasAnnotation<IsAttribute>() && !it.hasAnnotation<Ignore>()}.forEach{
-            
-            //xmlAttributesToAdd.add(XMLAttribute(name = it.findAnnotation<OverrideName>()?.name ?: it.name, value = it.call(objectToTranslate).toString()))
+        val xmlEntitiesToAdd:MutableList<XMLEntity> = mutableListOf()
+        clazz.declaredMemberProperties.filter { it.hasAnnotation<IsEntity>() && !it.hasAnnotation<Ignore>()}.forEach{
+            val nameAux = it.findAnnotation<OverrideName>()?.name ?: it.name
+            if (( !defaultEntitiesTypes.contains(it.call(objectToTranslate)!!::class) && it.call(objectToTranslate)!! !is Iterable<*>)){
+                val xmlEntityToAdd:XMLEntity = XMLTranslator(it.call(objectToTranslate)!!).entity
+                xmlEntityToAdd.setXMLEntityName(nameAux)
+                xmlEntitiesToAdd.add(xmlEntityToAdd)
+            }else {
+                val xmlEntityToAdd = XMLEntity(nameAux)
+
+                if (it.call(objectToTranslate) is Iterable<*>) {
+                    (it.call(objectToTranslate) as Iterable<*>).forEach { it2: Any? ->
+                        if (it2 != null) xmlEntityToAdd.addXMLEntityChild(XMLTranslator(it2).entity)
+                    }
+                }
+                val text: String = try {
+                    it.findAnnotation<XmlString>()!!.stringRefactor.constructors.filter { it2 -> it2.parameters.size == 1 }
+                        .random().call(it.call(objectToTranslate).toString()).toString()
+                } catch (e: Exception) {
+                    it.call(objectToTranslate).toString()
+                }
+                xmlEntityToAdd.setXMLEntityText(text)
+
+                xmlEntitiesToAdd.add(xmlEntityToAdd)
+            }
         }
-        return xmlAttributesToAdd
+        return xmlEntitiesToAdd
     }
- */
+
 }

@@ -26,9 +26,18 @@ annotation class IsAttribute
 @Target(AnnotationTarget.PROPERTY)
 annotation class IsEntity
 
+@Target(AnnotationTarget.PROPERTY)
+annotation class IsEntityToTranslate
+
+@Target(AnnotationTarget.PROPERTY)
+annotation class IsEntityWithChildren
+
 /**
  *
  */
 //todo
-@Target(AnnotationTarget.CLASS,AnnotationTarget.PROPERTY)
+@Target(AnnotationTarget.PROPERTY)
 annotation class XmlString(val stringRefactor:KClass<*>)
+
+@Target(AnnotationTarget.CLASS)
+annotation class XmlAdapter(val xmlRefactor:KClass<*>)

@@ -17,6 +17,7 @@ class ComponenteAvaliacao (
     val ano:Int
 )
 
+@XmlAdapter(FUCAdapter::class)
 @OverrideName(name = "fuc")
 class FUC (
     @IsAttribute
@@ -29,8 +30,9 @@ class FUC (
     val observacoes: String,
     @IsEntity
     val avaliacao: List<ComponenteAvaliacao>,
+    @OverrideName("Componente Principal")
     @IsEntity
-    val EntidadeComVariosAtributos: List<ComponenteAvaliacao>
+    val compenenteAuxiliar: ComponenteAvaliacao
 )
 
 class AddPercentage(
@@ -39,4 +41,10 @@ class AddPercentage(
     override fun toString():String{
         return "$text%"
     }
+}
+
+class FUCAdapter(
+    private val entity: XMLEntity
+){
+
 }

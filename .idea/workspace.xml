@@ -37,24 +37,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/4ano/workspaceIntelli/projetoPA",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/4ano/workspaceIntelli/projetoPA&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\4ano\workspaceIntelli\projetoPA\src\test\Testfiles" />
@@ -84,6 +84,22 @@
       <option name="PACKAGE_NAME" value="testXMLPackage" />
       <option name="MAIN_CLASS_NAME" value="testXMLPackage.TestXMLTranslator" />
       <option name="METHOD_NAME" value="addAttributes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestXMLTranslator.addEntities" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projetoPA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testXMLPackage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testXMLPackage" />
+      <option name="MAIN_CLASS_NAME" value="testXMLPackage.TestXMLTranslator" />
+      <option name="METHOD_NAME" value="addEntities" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -119,20 +135,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExamplesOfClassesKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ExamplesOfClassesKt" />
-      <module name="projetoPA" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in projetoPA" />
         <item itemvalue="JUnit.testXMLPackage in projetoPA" />
+        <item itemvalue="JUnit.TestXMLTranslator.addEntities" />
         <item itemvalue="JUnit.TestXMLTranslator.addAttributes" />
         <item itemvalue="JUnit.TestXMLTranslator.translateClassWithNothing" />
-        <item itemvalue="Kotlin.ExamplesOfClassesKt" />
       </list>
     </recent_temporary>
   </component>
@@ -162,7 +171,8 @@
       <workItem from="1713374365145" duration="2522000" />
       <workItem from="1713468513969" duration="2412000" />
       <workItem from="1713470964312" duration="2604000" />
-      <workItem from="1713994186406" duration="5521000" />
+      <workItem from="1713994186406" duration="5728000" />
+      <workItem from="1714237348810" duration="4703000" />
     </task>
     <servers />
   </component>
