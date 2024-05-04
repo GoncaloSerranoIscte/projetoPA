@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLDocument.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLEntity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLTranslator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLTranslator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/anotations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/anotations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/ExamplesOfClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/ExamplesOfClasses.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLTranslator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLTranslator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLAttribute.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLAttribute.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLDocument.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLEntity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +174,8 @@
       <workItem from="1713468513969" duration="2412000" />
       <workItem from="1713470964312" duration="2604000" />
       <workItem from="1713994186406" duration="5728000" />
-      <workItem from="1714237348810" duration="4703000" />
+      <workItem from="1714237348810" duration="5095000" />
+      <workItem from="1714845015095" duration="3287000" />
     </task>
     <servers />
   </component>

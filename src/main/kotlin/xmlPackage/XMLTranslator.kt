@@ -20,8 +20,8 @@ class XMLTranslator(
 
     private fun toXMLEntity():XMLEntity{
         var entity = XMLEntity(xmlEntityName = getName())
-        entity.addAllXMLAttribute(xmlAttributesToAdd = getXMLAttributes())
-        entity.addAllXMLEntitiesChildren(xmlEntitiesToAdd = getXMLEntities())
+        entity.addAll(xmlElementsToAdd = getXMLAttributes())
+        entity.addAll(xmlElementsToAdd = getXMLEntities())
         if (clazz.hasAnnotation<XmlAdapter>()){
             try {
                 entity = clazz.findAnnotation<XmlString>()!!.stringRefactor.constructors.filter { it -> it.parameters.size == 1 }
@@ -60,14 +60,14 @@ class XMLTranslator(
             val nameAux = it.findAnnotation<OverrideName>()?.name ?: it.name
             if (( !defaultEntitiesTypes.contains(it.call(objectToTranslate)!!::class) && it.call(objectToTranslate)!! !is Iterable<*>)){
                 val xmlEntityToAdd:XMLEntity = XMLTranslator(it.call(objectToTranslate)!!).entity
-                xmlEntityToAdd.setXMLEntityName(nameAux)
+                xmlEntityToAdd.setName(nameAux)
                 xmlEntitiesToAdd.add(xmlEntityToAdd)
             }else {
                 val xmlEntityToAdd = XMLEntity(nameAux)
 
                 if (it.call(objectToTranslate) is Iterable<*>) {
                     (it.call(objectToTranslate) as Iterable<*>).forEach { it2: Any? ->
-                        if (it2 != null) xmlEntityToAdd.addXMLEntityChild(XMLTranslator(it2).entity)
+                        if (it2 != null) xmlEntityToAdd.add(XMLTranslator(it2).entity)
                     }
                 }
                 val text: String = try {
@@ -76,7 +76,7 @@ class XMLTranslator(
                 } catch (e: Exception) {
                     it.call(objectToTranslate).toString()
                 }
-                xmlEntityToAdd.setXMLEntityText(text)
+                xmlEntityToAdd.setText(text)
 
                 xmlEntitiesToAdd.add(xmlEntityToAdd)
             }

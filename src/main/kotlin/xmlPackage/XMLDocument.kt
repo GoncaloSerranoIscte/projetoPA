@@ -61,39 +61,40 @@ class XMLDocument(
     /**
      * Replaces the name of this instance
      * @param newXMLDocumentName the new name
+     * @return this Instance
      */
-    fun changeName(newXMLDocumentName: String){
+    fun changeName(newXMLDocumentName: String):XMLDocument{
         xmlDocumentName = newXMLDocumentName
+        return this
     }
 
     /**
      * Adds a XMLEntity to this instance
      * @param xmlEntityToAdd the XMLEntity instance to add
-     * @return true if this instance can have a XMLEntity defined, and false otherwise
+     * @return this Instance
      */
-    fun addXMLEntity(xmlEntityToAdd: XMLEntity): Boolean{
+    fun add(xmlEntityToAdd: XMLEntity): XMLDocument{
         if(hasEntityChild){
-            return false
+            return this
         }
-        xmlEntityToAdd.addXMLParent(this)
+        xmlEntityToAdd.addParent(this)
         xmlEntityChild = xmlEntityToAdd
-        return true
+        return this
     }
 
     /**
      * Removes a XMLEntity to this instance
      * @param xmlEntityToRemove the XMLEntity instance to remove
-     * @return true if the XMLEntity can be removed from this instance
+     * @return this Instance
      */
-    fun removeXMLEntity(xmlEntityToRemove: XMLEntity): Boolean {
+    fun remove(xmlEntityToRemove: XMLEntity): XMLDocument {
         if (hasEntityChild && xmlEntityChild!! == xmlEntityToRemove) {
             xmlEntityChild = null
             if (xmlEntityToRemove.getDocumentParent != null) {
-                xmlEntityToRemove.removeXMLParent()
+                xmlEntityToRemove.removeParent()
             }
-            return true
         }
-        return false
+        return this
     }
 
     private fun toPrettyPrint(): String{
@@ -150,29 +151,32 @@ class XMLDocument(
      * @param xmlEntityName name of the XMLEntities that are going to be added a new XMLAttribute
      * @param xmlAttributeNameToAdd name of the new XMLAttribute to add
      * @param xmlAttributeValueToAdd value of the new XMLAttribute to add
+     * @return this Instance
      */
-    fun addXMLAttributeGlobally(xmlEntityName:String, xmlAttributeNameToAdd:String, xmlAttributeValueToAdd:String){
+    fun addXMLAttributeGlobally(xmlEntityName:String, xmlAttributeNameToAdd:String, xmlAttributeValueToAdd:String):XMLDocument{
         this.accept {
             if (it is XMLEntity && it.getName == xmlEntityName) {
-                it.addXMLAttribute(xmlAttributeNameToAdd, xmlAttributeValueToAdd)
+                it.add(xmlAttributeNameToAdd, xmlAttributeValueToAdd)
             }
             true
         }
+        return this
     }
 
     /**
-     * Adds XMLAttributes globally to every XMLEntity with a given Name defined in this instance
-     * @param xmlEntityName name of the XMLEntities that are going to be added a new XMLAttribute
-     * @param xmlAttributeNameToAdd name of the new XMLAttribute to add
-     * @param xmlAttributeValueToAdd value of the new XMLAttribute to add
+     * Renames XMLEntities globally to every XMLEntity with a given Name defined in this instance
+     * @param oldXMLEntityName name of the XMLEntities that are going to be renamed
+     * @param newXMLEntityName name that is going to be applied
+     * @return this Instance
      */
-    fun replaceXMLEntityNameGlobally(oldXMLEntityName: String, newXMLEntityName:String){
+    fun replaceXMLEntityNameGlobally(oldXMLEntityName: String, newXMLEntityName:String):XMLDocument{
         this.accept {
             if (it is XMLEntity && it.getName == oldXMLEntityName) {
-                it.setXMLEntityName(newXMLEntityName)
+                it.setName(newXMLEntityName)
             }
             true
         }
+        return this
     }
 
     /**
@@ -180,27 +184,31 @@ class XMLDocument(
      * @param xmlEntityName name of the XMLEntities that are going to rename a XMLAttribute
      * @param oldXMLAttributeName Name of the XMLAttributes instances to be renamed
      * @param newXMLAttributeName new Name for the XMLAttributes to be renamed
+     * @return this Instance
      */
-    fun replaceXMLAttributeNameGlobally(xmlEntityName: String, oldXMLAttributeName: String, newXMLAttributeName: String ){
+    fun replaceXMLAttributeNameGlobally(xmlEntityName: String, oldXMLAttributeName: String, newXMLAttributeName: String ):XMLDocument{
         this.accept {
             if (it is XMLEntity && it.getName == xmlEntityName) {
                 it.changeXMLAttributeName(oldXMLAttributeName,newXMLAttributeName)
             }
             true
         }
+        return this
     }
 
     /**
      * Removes XMLAttributes globally to every XMLEntity with a given Name defined in this instance
      * @param xmlEntityName name of the XMLEntities that are going to remove a XMLAttribute
      * @param xmlAttributeNameToRemove XMLAttribute instance to remove
+     * @return this Instance
      */
-    fun removeXMLAttributeGlobally(xmlEntityName: String, xmlAttributeNameToRemove: String){
+    fun removeXMLAttributeGlobally(xmlEntityName: String, xmlAttributeNameToRemove: String):XMLDocument{
         this.accept {
             if (it is XMLEntity && it.getName == xmlEntityName)
-                it.removeXMLAttribute(xmlAttributeNameToRemove)
+                it.remove(xmlAttributeNameToRemove)
             true
         }
+        return this
     }
 
     /**

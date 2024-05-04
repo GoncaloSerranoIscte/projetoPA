@@ -97,8 +97,8 @@ class XMLEntity private constructor(
 
 
     init {
-        getDocumentParent?.addXMLEntity(this)
-        getEntityParent?.addXMLEntityChild(this)
+        getDocumentParent?.add(this)
+        getEntityParent?.add(this)
     }
 
     override fun accept(visitor: (HasVisitor) -> Boolean) {
@@ -111,133 +111,114 @@ class XMLEntity private constructor(
     /**
      * Adds an XMLEntity to the List of XMLEntities that are directly below this instance
      * @param xmlEntityToAdd the XMLEntity instance to add
-     * @return true if this instance can have XMLEntities defined, and false otherwise
+     * @return this Instance
      */
-    fun addXMLEntityChild(xmlEntityToAdd: XMLEntity): Boolean{
+    fun add(xmlEntityToAdd: XMLEntity): XMLEntity{
         if (!this.hasText) {
-            xmlEntityToAdd.addXMLParent(this)
+            xmlEntityToAdd.addParent(this)
             xmlEntitiesChildren.add(xmlEntityToAdd)
-            return true
         }
-        return false
+        return this
     }
 
-    /**
-     * Adds XMLEntities to the List of XMLEntities that are directly below this instance
-     * @param xmlEntitiesToAdd List of the XMLEntities instances to add
-     * @return true if this instance can have XMLEntities defined, and false otherwise
-     */
-    fun addAllXMLEntitiesChildren(xmlEntitiesToAdd: List<XMLEntity>): Boolean{
-        xmlEntitiesToAdd.forEach {
-            if(!this.addXMLEntityChild(it)){
-                return false
-            }
-        }
-        return true
-    }
+
 
     /**
      * Adds a parent to this XMLEntity, removing the previous one if there is any
      * @param newXMLParent instance of XMLDocument or XMLEntity to be defined as parent of this instance
-     * @return true if the instance given can be added as parent and false otherwise
+     * @return this Instance
      */
-    internal fun addXMLParent(newXMLParent: Any):Boolean{
+    internal fun addParent(newXMLParent: Any):XMLEntity{
         if(!(newXMLParent is XMLDocument || newXMLParent is XMLEntity)) {
-            return false
+            return this
         }
         if(newXMLParent is XMLDocument){
             if(newXMLParent.hasEntityChild){
-                return false
+                return this
             }
-            this.removeXMLParent()
+            this.removeParent()
             this.parentXMLDocument=newXMLParent
         }
         if (newXMLParent is XMLEntity){
-            this.removeXMLParent()
+            this.removeParent()
             this.parentXMLEntity=newXMLParent
         }
-        return true
+        return this
     }
 
     /**
      * Removes an XMLEntity instance from this instance
      * @param xmlEntityToRemove instance of XMLEntity to remove
-     * @return the removed XMLEntity instance
+     * @return this Instance
      */
-    fun removeXMLEntityChild(xmlEntityToRemove: XMLEntity): XMLEntity {
+    fun remove(xmlEntityToRemove: XMLEntity): XMLEntity {
         if (xmlEntitiesChildren.contains(xmlEntityToRemove)) {
             xmlEntitiesChildren.remove(xmlEntityToRemove)
-            xmlEntityToRemove.removeXMLParent()
-            return xmlEntityToRemove
+            xmlEntityToRemove.removeParent()
         }
-        return xmlEntityToRemove
+        return this
     }
 
-    /**
-     * Removes XMLEntities instances from this instance
-     * @param xmlEntitiesToRemove List of instances of XMLEntities to remove
-     * @return List of the removed XMLEntities instances
-     */
-    fun removeAllXMLEntitiesChildren(xmlEntitiesToRemove: List<XMLEntity>): List<XMLEntity>{
-        xmlEntitiesToRemove.forEach {
-            this.removeXMLEntityChild(it)
-        }
-        return xmlEntitiesToRemove
-    }
+
 
     /**
      * Replaces the name of this instance
      * @param newXMLEntityName the new name
+     * @return this Instance
      */
-    fun setXMLEntityName(newXMLEntityName: String){
+    fun setName(newXMLEntityName: String):XMLEntity{
         this.name=newXMLEntityName
+        return this
     }
 
     /**
      * Defines the text of this instance
      * @param newXMLEntityText text to be defined in this instance
-     * @return true if this instance can have a text defined, and false otherwise
+     * @return this Instance
      */
-    fun setXMLEntityText(newXMLEntityText: String): Boolean{
+    fun setText(newXMLEntityText: String): XMLEntity{
         if (!hasChildren) {
             this.text = newXMLEntityText
-            return true
         }
-        return false
+        return this
     }
 
     /**
      * Removes the text of this instance
+     * @return this Instance
      */
-    fun removeXMLEntityText(){
+    fun removeText():XMLEntity{
         text=""
+        return this
     }
 
     /**
      * Removes the connection between this instance and it's parent
+     * @return this Instance
      */
-    fun removeXMLParent() {
+    fun removeParent() :XMLEntity{
         if (parentXMLEntity != null){
-            parentXMLEntity!!.removeXMLEntityChild(this)
+            parentXMLEntity!!.remove(this)
             parentXMLEntity = null
         }
         if(parentXMLDocument != null){
-            parentXMLDocument!!.removeXMLEntity(this)
+            parentXMLDocument!!.remove(this)
             parentXMLDocument = null
         }
+        return this
     }
 
     /**
      * Adds an XMLAttribute to this instance
      * @param xmlAttributeToAdd XMLAttribute instance to add to this instance
-     * @return the XMLAttribute added
+     * @return this Instance
      */
-    fun addXMLAttribute(xmlAttributeToAdd: XMLAttribute): XMLAttribute? { 
+    fun add(xmlAttributeToAdd: XMLAttribute): XMLEntity {
         if(getAttributes.any { it.getName == xmlAttributeToAdd.getName }){
-            return null
+            return this
         }
         xmlAttributes.add(xmlAttributeToAdd)
-        return xmlAttributeToAdd
+        return this
 
     }
 
@@ -245,93 +226,108 @@ class XMLEntity private constructor(
      * Adds an XMLAttribute to this instance
      * @param xmlAttributeNameToAdd name of the new XMLAttribute to add
      * @param xmlAttributeValueToAdd value of the new XMLAttribute to add
-     * @return the XMLAttribute added
+     * @return this Instance
      */
-    fun addXMLAttribute(xmlAttributeNameToAdd: String, xmlAttributeValueToAdd:String): XMLAttribute? {
-        var xmlAttribute = XMLAttribute(xmlAttributeNameToAdd,xmlAttributeValueToAdd)
-        return this.addXMLAttribute(xmlAttribute)
+    fun add(xmlAttributeNameToAdd: String, xmlAttributeValueToAdd:String): XMLEntity {
+        val xmlAttribute = XMLAttribute(xmlAttributeNameToAdd,xmlAttributeValueToAdd)
+        this.add(xmlAttribute)
+        return this
     }
 
     /**
-     * Adds XMLAttributes to this instance
-     * @param xmlAttributesToAdd List of XMLAttributes instances to add to this instance
+     * Adds XMLEntities and XLMAttributes to the List of XMLEntities that are directly below this instance
+     * @param xmlElementsToAdd List of the XMLEntities instances to add
+     * @return this Instance
      */
-    fun addAllXMLAttribute(xmlAttributesToAdd: List<XMLAttribute>){
-        xmlAttributesToAdd.forEach {
-            this.addXMLAttribute(it)
+    fun addAll(xmlElementsToAdd: List<Any>): XMLEntity{
+        xmlElementsToAdd.forEach {
+            if (it is XMLEntity){
+                this.add(xmlEntityToAdd = it)
+            }
+            if (it is XMLAttribute){
+                this.add(xmlAttributeToAdd = it)
+            }
         }
+        return this
     }
 
     /**
      * Removes an XMLAttribute to this instance
      * @param xmlAttributeToRemove XMLAttribute instance to remove from this instance
-     * @return the XMLAttribute removed
+     * @return this Instance
      */
-    fun removeXMLAttribute(xmlAttributeToRemove: XMLAttribute): XMLAttribute {
+    fun remove(xmlAttributeToRemove: XMLAttribute): XMLEntity {
         xmlAttributes.remove(xmlAttributeToRemove)
-        return xmlAttributeToRemove
+        return this
     }
 
+
+
     /**
-     * Removes XMLAttributes to this instance
-     * @param xmlAttributesToRemove List of XMLAttributes instances to remove from this instance
-     * @return the List of the XMLAttributes that were removed from this instance
+     * Removes XLMEntities and XMLAttributes instances from this instance
+     * @param xmlElementsToRemove List of instances of XMLEntities to remove
+     * @return this Instance
      */
-    fun removeAllXMLAttributes(xmlAttributesToRemove:List<XMLAttribute>): List<XMLAttribute>{
-        var xmlAttributesRemoved = mutableListOf<XMLAttribute>()
-        xmlAttributesToRemove.forEach {
-            if (this.xmlAttributes.contains(it)){
-                this.removeXMLAttribute(it)
-                xmlAttributesRemoved.add(it)
+    fun removeAll(xmlElementsToRemove: List<Any>): XMLEntity{
+        xmlElementsToRemove.forEach { it ->
+            if (it is XMLEntity){
+                this.remove(xmlEntityToRemove = it)
+            }
+            if(it is XMLAttribute) {
+                this.remove(xmlAttributeToRemove = it)
             }
         }
-        return xmlAttributesRemoved
+        return this
     }
 
     /**
      * Removes XMLAttributes to this instance
      * @param xmlAttributeNameToRemove Name of the XMLAttributes instances to remove from this instance
-     * @return the List of the XMLAttributes that were removed from this instance
+     * @return this Instance
      */
-    fun removeXMLAttribute(xmlAttributeNameToRemove:String): List<XMLAttribute>{
-        return this.removeAllXMLAttributes(xmlAttributes.filter { it.getName == xmlAttributeNameToRemove })
+    fun remove(xmlAttributeNameToRemove:String): XMLEntity {
+        this.removeAll(xmlElementsToRemove = xmlAttributes.filter { it.getName == xmlAttributeNameToRemove })
+        return this
     }
 
     /**
      * Replaces the name of XMLAttributes in this instance
      * @param oldXMLAttributeName Name of the XMLAttributes instances to be renamed
      * @param newXMLAttributeName new Name for the XMLAttributes to be renamed
+     * @return this Instance
      */
-    fun changeXMLAttributeName(oldXMLAttributeName:String, newXMLAttributeName:String){
+    fun changeXMLAttributeName(oldXMLAttributeName:String, newXMLAttributeName:String):XMLEntity{
         xmlAttributes.filter { it.getName == oldXMLAttributeName }.forEach {
                 it.changeXMLAttributeName(newXMLAttributeName)
         }
+        return this
     }
 
     /**
      * Replaces the value of XMLAttributes in this instance
      * @param xmlAttributeName Name of the XMLAttributes instances to change
      * @param newXMLAttributeValue new value for the XMLAttributes
+     * @return this Instance
      */
-    fun changeXMLAttributeValue(xmlAttributeName:String, newXMLAttributeValue:String){
+    fun changeXMLAttributeValue(xmlAttributeName:String, newXMLAttributeValue:String):XMLEntity{
         xmlAttributes.filter { it.getName == xmlAttributeName }.forEach {
                 it.changeXMLAttributeValue(newXMLAttributeValue)
         }
+        return this
     }
 
     /**
      * Replaces XMLAttribute in this instance
      * @param oldXMLAttribute XMLAttribute to be replaced
      * @param newXMLAttribute XMLAttribute to replace with
-     * @return true if the XMLAttribute to be replaced was defined in this instance, and false otherwise
+     * @return this Instance
      */
-    fun replaceXMLAttribute(oldXMLAttribute: XMLAttribute, newXMLAttribute: XMLAttribute): Boolean{
+    fun replaceXMLAttribute(oldXMLAttribute: XMLAttribute, newXMLAttribute: XMLAttribute): XMLEntity{
         if (xmlAttributes.contains(oldXMLAttribute)){
-            this.removeXMLAttribute(oldXMLAttribute)
-            this.addXMLAttribute(newXMLAttribute)
-            return true
+            this.remove(oldXMLAttribute)
+            this.add(newXMLAttribute)
         }
-        return false
+        return this
     }
 
     /**

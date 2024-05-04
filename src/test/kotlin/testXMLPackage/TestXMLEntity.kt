@@ -1,7 +1,6 @@
 package testXMLPackage
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 import xmlPackage.XMLAttribute
 import xmlPackage.XMLDocument
@@ -37,7 +36,7 @@ class TestXMLEntity {
     fun getAttributes(){
         val xmlEntity = XMLEntity(xmlEntityName = "XMLEntityName")
         val xmlAttibute = XMLAttribute(name = "AttributeName", value = "AttributeValue")
-        xmlEntity.addXMLAttribute(xmlAttibute)
+        xmlEntity.add(xmlAttibute)
         val xmlEntity0 = XMLEntity(xmlEntityName = "XMLEntity0Name")
         assertEquals(xmlAttibute,xmlEntity.getAttributes[0])
         assertEquals(0,xmlEntity0.getAttributes.size)
@@ -45,7 +44,7 @@ class TestXMLEntity {
     @Test
     fun getText(){
         val xmlEntity = XMLEntity(xmlEntityName = "XMLEntityName")
-        xmlEntity.setXMLEntityText(newXMLEntityText = "new_text")
+        xmlEntity.setText(newXMLEntityText = "new_text")
         val xmlEntity0 = XMLEntity(xmlEntityName = "XMLEntity0Name")
         assertEquals("new_text",xmlEntity.getText)
         assertEquals("", xmlEntity0.getText)
@@ -60,7 +59,7 @@ class TestXMLEntity {
     @Test
     fun hasText(){
         val xmlEntity = XMLEntity(xmlEntityName = "XMLEntityName")
-        xmlEntity.setXMLEntityText(newXMLEntityText = "new_text")
+        xmlEntity.setText(newXMLEntityText = "new_text")
         val xmlEntity0 = XMLEntity(xmlEntityName = "XMLEntity0Name")
         assertEquals(true,xmlEntity.hasText)
         assertEquals(false, xmlEntity0.hasText)
@@ -70,7 +69,7 @@ class TestXMLEntity {
     fun addXMLEntityChild(){
         val entidade0= XMLEntity(xmlEntityName = "plano")
         val entidade1= XMLEntity(xmlEntityName = "curso")
-        entidade0.addXMLEntityChild(xmlEntityToAdd = entidade1)
+        entidade0.add(xmlEntityToAdd = entidade1)
         assertEquals(mutableListOf(entidade1),entidade0.getChildEntities)
         assertEquals(mutableListOf<XMLEntity>(), entidade1.getChildEntities)
     }
@@ -80,7 +79,7 @@ class TestXMLEntity {
         val entidade0= XMLEntity(xmlEntityName = "plano")
         val entidade1= XMLEntity(xmlEntityName = "curso")
         val entidade2= XMLEntity(xmlEntityName = "curso")
-        entidade0.addAllXMLEntitiesChildren(xmlEntitiesToAdd = mutableListOf(entidade1,entidade2))
+        entidade0.addAll(xmlElementsToAdd = mutableListOf(entidade1,entidade2))
         assertEquals(mutableListOf(entidade1,entidade2),entidade0.getChildEntities)
         assertEquals(mutableListOf<XMLEntity>(), entidade1.getChildEntities)
     }
@@ -93,7 +92,7 @@ class TestXMLEntity {
         val entidade2= XMLEntity(xmlEntityName = "name", parentXMLEntity = entidade1)
         assertEquals(mutableListOf(entidade1),entidade0.getChildEntities)
         assertEquals(entidade0,entidade1.getEntityParent)
-        entidade0.removeXMLEntityChild(xmlEntityToRemove = entidade1)
+        entidade0.remove(xmlEntityToRemove = entidade1)
         assertEquals(mutableListOf<XMLEntity>(),entidade0.getChildEntities)
         assertEquals(mutableListOf(entidade2),entidade1.getChildEntities)
         assertEquals(null,entidade1.getEntityParent)
@@ -107,7 +106,7 @@ class TestXMLEntity {
         assertEquals(mutableListOf(entidade1,entidade2),entidade0.getChildEntities)
         assertEquals(entidade0,entidade1.getEntityParent)
         assertEquals(entidade0,entidade2.getEntityParent)
-        entidade0.removeAllXMLEntitiesChildren(xmlEntitiesToRemove = mutableListOf(entidade1,entidade2))
+        entidade0.removeAll(xmlElementsToRemove = mutableListOf(entidade1,entidade2))
         assertEquals(mutableListOf<XMLEntity>(),entidade0.getChildEntities)
         assertEquals(null,entidade1.getEntityParent)
         assertEquals(null,entidade2.getEntityParent)
@@ -117,7 +116,7 @@ class TestXMLEntity {
     fun setXMLEntityName(){
         val entidade0= XMLEntity(xmlEntityName = "plano")
         assertEquals("plano",entidade0.getName)
-        entidade0.setXMLEntityName(newXMLEntityName = "plano2")
+        entidade0.setName(newXMLEntityName = "plano2")
         assertEquals("plano2",entidade0.getName)
     }
 
@@ -125,8 +124,8 @@ class TestXMLEntity {
     fun setXMLEntityText(){
         val entidade0= XMLEntity(xmlEntityName = "plano")
         val entidade1= XMLEntity(xmlEntityName = "plano1", parentXMLEntity = entidade0)
-        entidade0.setXMLEntityText(newXMLEntityText = "texto")
-        entidade1.setXMLEntityText(newXMLEntityText = "texto1")
+        entidade0.setText(newXMLEntityText = "texto")
+        entidade1.setText(newXMLEntityText = "texto1")
         assertEquals("texto1", entidade1.getText)
         assertEquals("", entidade0.getText)
     }
@@ -134,9 +133,9 @@ class TestXMLEntity {
     @Test
     fun removeXMLEntityText(){
         val entidade0= XMLEntity(xmlEntityName = "plano")
-        entidade0.setXMLEntityText(newXMLEntityText = "texto")
+        entidade0.setText(newXMLEntityText = "texto")
         assertEquals("texto", entidade0.getText)
-        entidade0.removeXMLEntityText()
+        entidade0.removeText()
         assertEquals("", entidade0.getText)
     }
 
@@ -146,7 +145,7 @@ class TestXMLEntity {
         val entidade1= XMLEntity(xmlEntityName = "plano1", parentXMLEntity = entidade0)
         assertEquals(entidade0,entidade1.getParent)
         assertEquals(mutableListOf(entidade1),entidade0.getChildEntities)
-        entidade1.removeXMLParent()
+        entidade1.removeParent()
         assertEquals(null,entidade1.getParent)
         assertEquals(mutableListOf<XMLEntity>(),entidade0.getChildEntities)
     }
@@ -155,12 +154,13 @@ class TestXMLEntity {
     fun addXMLAttribute(){
         val entidade0= XMLEntity(xmlEntityName = "plano")
         val atributo0= XMLAttribute(name = "dia", value = "Sabado")
-        entidade0.addXMLAttribute(xmlAttributeToAdd = atributo0)
-        val atributo1: XMLAttribute? = entidade0.addXMLAttribute(xmlAttributeNameToAdd = "mes", xmlAttributeValueToAdd = "janeiro")
+        entidade0.add(xmlAttributeToAdd = atributo0)
+        entidade0.add(xmlAttributeNameToAdd = "mes", xmlAttributeValueToAdd = "janeiro")
         val atributo2= XMLAttribute(name = "dia", value = "Domingo")
-        val atributo3: XMLAttribute? = entidade0.addXMLAttribute(xmlAttributeNameToAdd = "mes", xmlAttributeValueToAdd = "fevereiro")
-        assertEquals(mutableListOf(atributo0,atributo1),entidade0.getAttributes)
-        assertNull(atributo3)
+        entidade0.add(xmlAttributeNameToAdd = "mes", xmlAttributeValueToAdd = "fevereiro")
+        assertEquals(false,entidade0.getAttributes.contains(atributo2))
+        assertEquals(2, entidade0.getAttributes.size)
+        //assertNull(atributo3)
     }
 
     @Test
@@ -168,7 +168,7 @@ class TestXMLEntity {
         val entidade0= XMLEntity(xmlEntityName = "plano")
         val atributo0= XMLAttribute(name = "dia", value = "Sabado")
         val atributo1= XMLAttribute(name = "mes", value = "janeiro")
-        entidade0.addAllXMLAttribute(xmlAttributesToAdd = mutableListOf(atributo0,atributo1))
+        entidade0.addAll(xmlElementsToAdd = mutableListOf(atributo0,atributo1))
         assertEquals(mutableListOf(atributo0,atributo1), entidade0.getAttributes)
     }
 
@@ -177,11 +177,11 @@ class TestXMLEntity {
         val entidade0= XMLEntity(xmlEntityName = "plano")
         val atributo0= XMLAttribute(name = "dia", value = "Sabado")
         val atributo1= XMLAttribute(name = "mes", value = "janeiro")
-        entidade0.addAllXMLAttribute(xmlAttributesToAdd = mutableListOf(atributo0,atributo1))
+        entidade0.addAll(xmlElementsToAdd = mutableListOf(atributo0,atributo1))
         assertEquals(mutableListOf(atributo0,atributo1), entidade0.getAttributes)
-        entidade0.removeXMLAttribute(xmlAttributeToRemove = atributo0)
+        entidade0.remove(xmlAttributeToRemove = atributo0)
         assertEquals(mutableListOf(atributo1), entidade0.getAttributes)
-        entidade0.removeXMLAttribute(xmlAttributeNameToRemove = "mes")
+        entidade0.remove(xmlAttributeNameToRemove = "mes")
         assertEquals(mutableListOf<XMLAttribute>(), entidade0.getAttributes)
     }
     @Test
@@ -190,9 +190,9 @@ class TestXMLEntity {
         val atributo0= XMLAttribute(name = "dia", value = "Sabado")
         val atributo1= XMLAttribute(name = "mes", value = "janeiro")
         val atributo2= XMLAttribute(name = "ano", value = "2015")
-        entidade0.addAllXMLAttribute(xmlAttributesToAdd = mutableListOf(atributo0,atributo1,atributo2))
+        entidade0.addAll(xmlElementsToAdd = mutableListOf(atributo0,atributo1,atributo2))
         assertEquals(mutableListOf(atributo0,atributo1,atributo2), entidade0.getAttributes)
-        entidade0.removeAllXMLAttributes(xmlAttributesToRemove = mutableListOf(atributo0,atributo1))
+        entidade0.removeAll(xmlElementsToRemove = mutableListOf(atributo0,atributo1))
         assertEquals(mutableListOf(atributo2), entidade0.getAttributes)
     }
 
@@ -201,7 +201,7 @@ class TestXMLEntity {
         val entidade0= XMLEntity(xmlEntityName = "plano")
         val atributo0= XMLAttribute(name = "dia", value = "Sabado")
         val atributo1= XMLAttribute(name = "mes", value = "Abril")
-        entidade0.addAllXMLAttribute(xmlAttributesToAdd = mutableListOf(atributo0,atributo1))
+        entidade0.addAll(xmlElementsToAdd = mutableListOf(atributo0,atributo1))
         entidade0.changeXMLAttributeName(oldXMLAttributeName = "dia", newXMLAttributeName = "dia da semana")
         assertEquals("dia_da_semana",entidade0.getAttributes[0].getName)
         assertEquals("mes",entidade0.getAttributes[1].getName)
@@ -212,7 +212,7 @@ class TestXMLEntity {
         val entidade0= XMLEntity(xmlEntityName = "plano")
         val atributo0= XMLAttribute(name = "dia", value = "Sabado")
         val atributo1= XMLAttribute(name = "mes", value = "Abril")
-        entidade0.addAllXMLAttribute(xmlAttributesToAdd = mutableListOf(atributo0,atributo1))
+        entidade0.addAll(xmlElementsToAdd = mutableListOf(atributo0,atributo1))
         entidade0.changeXMLAttributeValue(xmlAttributeName =  "dia", newXMLAttributeValue = "Domingo")
         assertEquals("Domingo",entidade0.getAttributes[0].getValue)
         assertEquals("Abril",entidade0.getAttributes[1].getValue)
@@ -222,7 +222,7 @@ class TestXMLEntity {
         val entidade0= XMLEntity(xmlEntityName = "plano")
         val atributo0= XMLAttribute(name = "dia", value = "Sabado")
         val atributo1= XMLAttribute(name = "mes", value = "Abril")
-        entidade0.addXMLAttribute(xmlAttributeToAdd = atributo0)
+        entidade0.add(xmlAttributeToAdd = atributo0)
         assertEquals(atributo0,entidade0.getAttributes[0])
         entidade0.replaceXMLAttribute(oldXMLAttribute = atributo0, newXMLAttribute = atributo1)
         assertEquals(atributo1,entidade0.getAttributes[0])
@@ -233,10 +233,10 @@ class TestXMLEntity {
     fun prettyPrint(){
         val entidade0= XMLEntity(xmlEntityName = "entidade0")
         val atributo0= XMLAttribute(name = "atributo0", value = "valor0")
-        entidade0.addXMLAttribute(atributo0)
+        entidade0.add(atributo0)
 
         assertEquals("<entidade0 atributo0=\"valor0\"/>", entidade0.prettyPrint)
-        entidade0.setXMLEntityText(newXMLEntityText = "texto0")
+        entidade0.setText(newXMLEntityText = "texto0")
         assertEquals("<entidade0 atributo0=\"valor0\">texto0</entidade0>", entidade0.prettyPrint)
 
         val entidade1= XMLEntity(xmlEntityName = "entidade1")
@@ -244,9 +244,9 @@ class TestXMLEntity {
         val entidade3= XMLEntity(xmlEntityName = "entidade3",entidade1)
         val entidade4= XMLEntity(xmlEntityName = "entidade4",entidade3)
         val atributo1= XMLAttribute(name = "atributo1", value = "valor1")
-        entidade2.setXMLEntityText(newXMLEntityText = "texto2")
-        entidade2.addXMLAttribute(xmlAttributeToAdd = atributo1)
-        entidade4.setXMLEntityText(newXMLEntityText = "texto4")
+        entidade2.setText(newXMLEntityText = "texto2")
+        entidade2.add(xmlAttributeToAdd = atributo1)
+        entidade4.setText(newXMLEntityText = "texto4")
         assertEquals(
             "<entidade1>\n" +
                     "\t<entidade2 atributo1=\"valor1\">texto2</entidade2>\n" +
