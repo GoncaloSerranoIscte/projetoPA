@@ -43,8 +43,8 @@ class AddPercentage(
     }
 }
 
-class FUCAdapter(
+class FUCAdapter (
     private val entity: XMLEntity
-){
+) {
 
 }
