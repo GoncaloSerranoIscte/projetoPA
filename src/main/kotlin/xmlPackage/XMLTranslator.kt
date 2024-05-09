@@ -1,9 +1,11 @@
 package xmlPackage
 
 import kotlin.reflect.KClass
+import kotlin.reflect.KProperty
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.hasAnnotation
+import kotlin.reflect.full.isSubclassOf
 
 
 class XMLTranslator(
@@ -41,17 +43,33 @@ class XMLTranslator(
         return "${clazz.findAnnotation<OverrideName>()?.name ?: clazz.simpleName}"
     }
 
+
+    private fun getString(kProperty: KProperty<*>, objectToTranslate: Any): String {
+        return if (kProperty.hasAnnotation<XmlString>()) {
+            val annotation = kProperty.findAnnotation<XmlString>()
+            if (annotation != null) {
+                val stringRefactor = annotation.stringRefactor
+                if (stringRefactor.isSubclassOf(StringAdapterInterface::class)) {
+                    val adapterInstance = stringRefactor.java.newInstance() as StringAdapterInterface
+                    val adaptStringMethod = stringRefactor.java.getDeclaredMethod("adaptString", String::class.java)
+                    return adaptStringMethod.invoke(adapterInstance, kProperty.call(objectToTranslate).toString()) as String
+                } else {
+                    throw IllegalArgumentException("A classe deve implementar StringAdapterInterface")
+                }
+            } else {
+                throw IllegalArgumentException("A propriedade deve estar anotada com XmlString")
+            }
+        } else {
+            kProperty.call(objectToTranslate).toString()
+        }
+    }
+
     //todo chamar o adaptar com uma funçao
     private fun getXMLAttributes():List<XMLAttribute>{
         val xmlAttributesToAdd:MutableList<XMLAttribute> = mutableListOf()
         clazz.declaredMemberProperties.filter { it.hasAnnotation<IsAttribute>() && !it.hasAnnotation<Ignore>()}.forEach{
             val nameAt:String = it.findAnnotation<OverrideName>()?.name ?: it.name
-            val valueAt:String = try {
-                    it.findAnnotation<XmlString>()!!.stringRefactor.constructors.filter { it2 -> it2.parameters.size == 1 }
-                        .random().call(it.call(objectToTranslate).toString()).toString()
-                }catch (e: Exception){
-                    it.call(objectToTranslate).toString()
-            }
+            val valueAt: String = getString(it, objectToTranslate)
             xmlAttributesToAdd.add(XMLAttribute(name = nameAt, value = valueAt))
         }
         return xmlAttributesToAdd
@@ -73,12 +91,7 @@ class XMLTranslator(
                         if (it2 != null) xmlEntityToAdd.add(XMLTranslator(it2).toXMLEntity())
                     }
                 }
-                val text: String = try {
-                    it.findAnnotation<XmlString>()!!.stringRefactor.constructors.filter { it2 -> it2.parameters.size == 1 }
-                        .random().call(it.call(objectToTranslate).toString()).toString()
-                } catch (e: Exception) {
-                    it.call(objectToTranslate).toString()
-                }
+                val text: String = getString(it, objectToTranslate)
                 xmlEntityToAdd.setText(text)
 
                 xmlEntitiesToAdd.add(xmlEntityToAdd)

@@ -35,11 +35,9 @@ class FUC (
     val compenenteAuxiliar: ComponenteAvaliacao
 )
 
-class AddPercentage(
-    private val text:String
-){
-    override fun toString():String{
-        return "$text%"
+class AddPercentage : StringAdapterInterface {
+    override fun adaptString(stringToAdapt: String): String {
+        return "${stringToAdapt}%"
     }
 }
 
