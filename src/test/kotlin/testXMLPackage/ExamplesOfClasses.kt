@@ -18,7 +18,6 @@ class ComponenteAvaliacao (
 )
 
 @XmlAdapter(FUCAdapter::class)
-@OverrideName(name = "fuc")
 class FUC (
     @IsAttribute
     val codigo: String,
@@ -41,8 +40,9 @@ class AddPercentage : StringAdapterInterface {
     }
 }
 
-class FUCAdapter (
-    private val entity: XMLEntity
-) {
+class FUCAdapter : XMLAdapterInterface{
+    override fun adaptXMLEntity(xmlEntity: XMLEntity) {
+        xmlEntity.setName("fuc")
+    }
 
 }

@@ -18,25 +18,33 @@ class XMLTranslator(
     private val clazz:KClass<*>
         get() = objectToTranslate::class
 
-    public fun toXMLEntity():XMLEntity{
-        var entity = XMLEntity(xmlEntityName = getName())
+    fun toXMLEntity():XMLEntity{
+        val entity = XMLEntity(xmlEntityName = getName())
         entity.addAll(xmlElementsToAdd = getXMLAttributes())
         entity.addAll(xmlElementsToAdd = getXMLEntities())
-        if (clazz.hasAnnotation<XmlString>()){
-            try {
-                entity = clazz.findAnnotation<XmlString>()!!.stringRefactor.constructors.filter { it -> it.parameters.size == 1 }
-                    .random().call(entity) as XMLEntity
-            }catch (e: Exception){
-
-            }
-        }
-        if (clazz.hasAnnotation<XmlAdapter>()){
-            //todo
-            "" + ""
-        }
+        adaptEntity(entity)
         return entity
     }
 
+
+    private fun adaptEntity(entity: XMLEntity) {
+        if (clazz.hasAnnotation<XmlAdapter>()){
+            val annotation = clazz.findAnnotation<XmlAdapter>()
+            if (annotation != null) {
+                val xmlRefactor = annotation.xmlRefactor
+                if (xmlRefactor.isSubclassOf(XMLAdapterInterface::class)) {
+                    val adapterInstance = xmlRefactor.java.newInstance() as XMLAdapterInterface
+                    val adaptEntityMethod = xmlRefactor.java.getDeclaredMethod("adaptXMLEntity", XMLEntity::class.java)
+                    adaptEntityMethod.invoke(adapterInstance, entity)
+                } else {
+                    throw IllegalArgumentException("A classe deve implementar XMLAdapterInterface")
+                }
+            } else {
+                throw IllegalArgumentException("A propriedade deve estar anotada com uma XMLAdapterInterface")
+            }
+
+        }
+    }
 
     private fun getName():String{
         val clazz: KClass<*> = objectToTranslate::class
@@ -57,14 +65,13 @@ class XMLTranslator(
                     throw IllegalArgumentException("A classe deve implementar StringAdapterInterface")
                 }
             } else {
-                throw IllegalArgumentException("A propriedade deve estar anotada com XmlString")
+                throw IllegalArgumentException("A propriedade deve estar anotada com uma StringAdapterInterface")
             }
         } else {
             kProperty.call(objectToTranslate).toString()
         }
     }
 
-    //todo chamar o adaptar com uma funçao
     private fun getXMLAttributes():List<XMLAttribute>{
         val xmlAttributesToAdd:MutableList<XMLAttribute> = mutableListOf()
         clazz.declaredMemberProperties.filter { it.hasAnnotation<IsAttribute>() && !it.hasAnnotation<Ignore>()}.forEach{
@@ -85,7 +92,6 @@ class XMLTranslator(
                 xmlEntitiesToAdd.add(xmlEntityToAdd)
             }else {
                 val xmlEntityToAdd = XMLEntity(nameAux)
-
                 if (it.call(objectToTranslate) is Iterable<*>) {
                     (it.call(objectToTranslate) as Iterable<*>).forEach { it2: Any? ->
                         if (it2 != null) xmlEntityToAdd.add(XMLTranslator(it2).toXMLEntity())
