@@ -33,7 +33,7 @@ class XMLTranslator(
             if (annotation != null) {
                 val xmlRefactor = annotation.xmlRefactor
                 if (xmlRefactor.isSubclassOf(XMLAdapterInterface::class)) {
-                    val adapterInstance = xmlRefactor.java.newInstance() as XMLAdapterInterface
+                    val adapterInstance = xmlRefactor.java.getDeclaredConstructor().newInstance() as XMLAdapterInterface
                     val adaptEntityMethod = xmlRefactor.java.getDeclaredMethod("adaptXMLEntity", XMLEntity::class.java)
                     adaptEntityMethod.invoke(adapterInstance, entity)
                 } else {
@@ -58,7 +58,7 @@ class XMLTranslator(
             if (annotation != null) {
                 val stringRefactor = annotation.stringRefactor
                 if (stringRefactor.isSubclassOf(StringAdapterInterface::class)) {
-                    val adapterInstance = stringRefactor.java.newInstance() as StringAdapterInterface
+                    val adapterInstance = stringRefactor.java.getDeclaredConstructor().newInstance() as StringAdapterInterface
                     val adaptStringMethod = stringRefactor.java.getDeclaredMethod("adaptString", String::class.java)
                     return adaptStringMethod.invoke(adapterInstance, kProperty.call(objectToTranslate).toString()) as String
                 } else {
@@ -71,6 +71,7 @@ class XMLTranslator(
             kProperty.call(objectToTranslate).toString()
         }
     }
+
 
     private fun getXMLAttributes():List<XMLAttribute>{
         val xmlAttributesToAdd:MutableList<XMLAttribute> = mutableListOf()

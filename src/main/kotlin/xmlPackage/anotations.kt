@@ -37,7 +37,7 @@ annotation class IsEntityWithChildren
  */
 //todo
 @Target(AnnotationTarget.PROPERTY)
-annotation class XmlString(val stringRefactor:KClass<*>)
+annotation class XmlString(val stringRefactor:KClass<out StringAdapterInterface>)
 
 @Target(AnnotationTarget.CLASS)
-annotation class XmlAdapter(val xmlRefactor:KClass<*>)
+annotation class XmlAdapter(val xmlRefactor:KClass<out XMLAdapterInterface>)

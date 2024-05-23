@@ -4,7 +4,7 @@
     <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLTranslator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLTranslator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/ExamplesOfClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/ExamplesOfClasses.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/anotations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/anotations.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,9 +136,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in projetoPA" />
+        <item itemvalue="JUnit.TestXMLTranslator.addEntities" />
         <item itemvalue="JUnit.testXMLPackage in projetoPA" />
         <item itemvalue="JUnit.TestXMLTranslator.addAttributes" />
-        <item itemvalue="JUnit.TestXMLTranslator.addEntities" />
         <item itemvalue="JUnit.TestXMLTranslator.translateClassWithNothing" />
       </list>
     </recent_temporary>
@@ -173,7 +173,9 @@
       <workItem from="1714237348810" duration="5095000" />
       <workItem from="1714845015095" duration="4297000" />
       <workItem from="1715170307324" duration="2336000" />
-      <workItem from="1715258397217" duration="5108000" />
+      <workItem from="1715258397217" duration="6903000" />
+      <workItem from="1715795032519" duration="2354000" />
+      <workItem from="1716231580423" duration="727000" />
     </task>
     <servers />
   </component>
