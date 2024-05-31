@@ -26,18 +26,16 @@ annotation class IsAttribute
 @Target(AnnotationTarget.PROPERTY)
 annotation class IsEntity
 
-@Target(AnnotationTarget.PROPERTY)
-annotation class IsEntityToTranslate
 
-@Target(AnnotationTarget.PROPERTY)
-annotation class IsEntityWithChildren
 
 /**
- *
+ * Adapts the string value according to the function defined in the class given
  */
-//todo
 @Target(AnnotationTarget.PROPERTY)
 annotation class XmlString(val stringRefactor:KClass<out StringAdapterInterface>)
 
+/**
+ * Adapts the XMLEntity according to the function defined in the class given
+ */
 @Target(AnnotationTarget.CLASS)
 annotation class XmlAdapter(val xmlRefactor:KClass<out XMLAdapterInterface>)

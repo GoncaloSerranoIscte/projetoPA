@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLDocument.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLEntity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLTranslator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLTranslator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/anotations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/anotations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/adapters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/adapters.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/anotations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/annotations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLDocument.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLTranslator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLTranslator.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,9 +19,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin File" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -71,6 +76,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestDSL.stuff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projetoPA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testXMLPackage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testXMLPackage" />
+      <option name="MAIN_CLASS_NAME" value="testXMLPackage.TestDSL" />
+      <option name="METHOD_NAME" value="stuff" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestXMLTranslator.addAttributes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="projetoPA" />
       <extension name="coverage">
@@ -103,22 +124,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestXMLTranslator.translateClassWithNothing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="projetoPA" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="testXMLPackage.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="testXMLPackage" />
-      <option name="MAIN_CLASS_NAME" value="testXMLPackage.TestXMLTranslator" />
-      <option name="METHOD_NAME" value="translateClassWithNothing" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="testXMLPackage in projetoPA" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="projetoPA" />
       <extension name="coverage">
@@ -136,10 +141,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in projetoPA" />
+        <item itemvalue="JUnit.TestDSL.stuff" />
         <item itemvalue="JUnit.TestXMLTranslator.addEntities" />
         <item itemvalue="JUnit.testXMLPackage in projetoPA" />
         <item itemvalue="JUnit.TestXMLTranslator.addAttributes" />
-        <item itemvalue="JUnit.TestXMLTranslator.translateClassWithNothing" />
       </list>
     </recent_temporary>
   </component>
@@ -176,6 +181,9 @@
       <workItem from="1715258397217" duration="6903000" />
       <workItem from="1715795032519" duration="2354000" />
       <workItem from="1716231580423" duration="727000" />
+      <workItem from="1716486549082" duration="315000" />
+      <workItem from="1716921296945" duration="5908000" />
+      <workItem from="1717177015809" duration="1892000" />
     </task>
     <servers />
   </component>

@@ -26,7 +26,7 @@ class TestXMLDocument{
 
     @Test
     fun getEncoding(){
-        val documento0 = XMLDocument(xmlDocumentName = "documento", enconding = "UTF-7")
+        val documento0 = XMLDocument(xmlDocumentName = "documento", encoding = "UTF-7")
         val documento1 = XMLDocument(xmlDocumentName = "documento")
         assertEquals("UTF-7",documento0.getEncoding)
         assertEquals("UTF-8",documento1.getEncoding)

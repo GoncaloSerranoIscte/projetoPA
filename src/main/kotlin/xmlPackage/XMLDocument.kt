@@ -6,13 +6,13 @@ import java.io.File
  * @constructor creates an XMLDocument instance
  * @param xmlDocumentName the name of the new XMLDocument
  * @param version the version of the new XMLDocument, default value defined as "1.0"
- * @param enconding the enconding of the new XMLDocument, default value defined as "UTF-8"
+ * @param encoding the encoding of the new XMLDocument, default value defined as "UTF-8"
  * @return the new XMLDocument instance
  */
 class XMLDocument(
     private var xmlDocumentName:String,
     private val version: String = "1.0",
-    private val enconding: String = "UTF-8"
+    private val encoding: String = "UTF-8"
 ): HasVisitor {
     private var xmlEntityChild: XMLEntity? = null
 
@@ -35,7 +35,7 @@ class XMLDocument(
      * @return the enconding of this instance
      */
     val getEncoding:String
-        get() = enconding
+        get() = encoding
 
     /**
      * Gets the XMLEntity defined in this instance
@@ -98,7 +98,7 @@ class XMLDocument(
     }
 
     private fun toPrettyPrint(): String{
-        var str = "<?xml version=\"${ this.version }\" encoding=\"${this.enconding}\"?>"
+        var str = "<?xml version=\"${ this.version }\" encoding=\"${this.encoding}\"?>"
         if (hasEntityChild){
             str += "\n${xmlEntityChild!!.prettyPrint}"
         }

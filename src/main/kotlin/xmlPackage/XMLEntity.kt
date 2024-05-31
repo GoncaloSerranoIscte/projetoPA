@@ -209,13 +209,14 @@ class XMLEntity private constructor(
     }
 
     /**
-     * Adds an XMLAttribute to this instance if there is not already an XMLAttribute defined with the same name
+     * Adds an XMLAttribute to this instance or uptades the attribute defined with the same name
      * @param xmlAttributeToAdd XMLAttribute instance to add to this instance
      * @return this Instance
      */
     fun add(xmlAttributeToAdd: XMLAttribute): XMLEntity {
         if(getAttributes.any { it.getName == xmlAttributeToAdd.getName }){
-            return this
+            xmlAttributes.remove(getAttributes.first{it.getName == xmlAttributeToAdd.getName})
+            
         }
         xmlAttributes.add(xmlAttributeToAdd)
         return this

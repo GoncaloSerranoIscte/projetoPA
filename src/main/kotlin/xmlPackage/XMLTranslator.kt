@@ -8,17 +8,24 @@ import kotlin.reflect.full.hasAnnotation
 import kotlin.reflect.full.isSubclassOf
 
 
-class XMLTranslator(
-    private val objectToTranslate: Any,
-    private val defaultEntitiesTypes: MutableList<KClass<*>> = mutableListOf(1::class,2.0::class,false::class, ""::class)
-) {
+class XMLTranslator{
     //private val defaultEntitiesTypes: MutableList<Any>
     //    get() = mutableListOf(1::class,2.0::class,false::class, ""::class)
 
+    private lateinit var objectToTranslate: Any
+    private lateinit var defaultEntitiesTypes: List<KClass<*>>
     private val clazz:KClass<*>
         get() = objectToTranslate::class
 
-    fun toXMLEntity():XMLEntity{
+    /**
+     * Translates the given object into a XMLEntity instance
+     * @param objectToTranslate Object to Translate
+     * @param defaultEntitiesTypes List of KClass to not translate, default= Int, Double, Boolean and String
+     * @return the Translated instance
+     */
+    fun toXMLEntity(objectToTranslate: Any, defaultEntitiesTypes: List<KClass<*>> =  mutableListOf(1::class,2.0::class,false::class, ""::class)):XMLEntity{
+        this.objectToTranslate = objectToTranslate
+        this.defaultEntitiesTypes = defaultEntitiesTypes
         val entity = XMLEntity(xmlEntityName = getName())
         entity.addAll(xmlElementsToAdd = getXMLAttributes())
         entity.addAll(xmlElementsToAdd = getXMLEntities())
@@ -88,14 +95,14 @@ class XMLTranslator(
         clazz.declaredMemberProperties.filter { it.hasAnnotation<IsEntity>() && !it.hasAnnotation<Ignore>()}.forEach{
             val nameAux = it.findAnnotation<OverrideName>()?.name ?: it.name
             if (( !defaultEntitiesTypes.contains(it.call(objectToTranslate)!!::class) && it.call(objectToTranslate)!! !is Iterable<*>)){
-                val xmlEntityToAdd:XMLEntity = XMLTranslator(it.call(objectToTranslate)!!).toXMLEntity()
+                val xmlEntityToAdd:XMLEntity = XMLTranslator().toXMLEntity(it.call(objectToTranslate)!!)
                 xmlEntityToAdd.setName(nameAux)
                 xmlEntitiesToAdd.add(xmlEntityToAdd)
             }else {
                 val xmlEntityToAdd = XMLEntity(nameAux)
                 if (it.call(objectToTranslate) is Iterable<*>) {
                     (it.call(objectToTranslate) as Iterable<*>).forEach { it2: Any? ->
-                        if (it2 != null) xmlEntityToAdd.add(XMLTranslator(it2).toXMLEntity())
+                        if (it2 != null) xmlEntityToAdd.add(XMLTranslator().toXMLEntity(it2))
                     }
                 }
                 val text: String = getString(it, objectToTranslate)
