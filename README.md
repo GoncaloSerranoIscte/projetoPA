@@ -20,29 +20,7 @@ As classes XMLDocument e XMLEntity implementam a interface Visitor que facilita 
 <h3>Exemplo Geral:</h3>
 Isto é um exemplo daquilo que pode ser escrito no documento através desta biblioteca:
 <br>
-```text
-    <?xml version="1.0" encoding="UTF-8"?>
-    <plano>
-        <curso>Mestrado em Engenharia Informática</curso>
-        <fuc codigo="M4310">
-            <nome>Programação Avançada</nome>
-            <ects>6.0</ects>
-            <avaliacao>
-                <componente nome="Quizzes" peso="20%"/>
-                <componente nome="Projeto" peso="80%"/>
-            </avaliacao>
-        </fuc>
-        <fuc codigo="03782">
-            <nome>Dissertação</nome>
-            <ects>42.0</ects>
-            <avaliacao>
-                <componente nome="Dissertação" peso="60%"/>
-                <componente nome="Apresentação" peso="20%"/>
-                <componente nome="Discussão" peso="20%"/>
-            </avaliacao>
-        </fuc>
-    </plano>
-```
+![img_1.png](img_1.png)
 
 <h3>Tutorial</h3>
 Para criar estas estruturas podemos seguir os seguintes exemplos:
