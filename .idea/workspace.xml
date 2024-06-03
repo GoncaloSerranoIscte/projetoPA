@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLDocument.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLTranslator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/XMLTranslator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/adapters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/adapters.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/anotations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/annotations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLDocument.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLDocument.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLTranslator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLTranslator.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +177,8 @@
       <workItem from="1716231580423" duration="727000" />
       <workItem from="1716486549082" duration="315000" />
       <workItem from="1716921296945" duration="5908000" />
-      <workItem from="1717177015809" duration="1892000" />
+      <workItem from="1717177015809" duration="2275000" />
+      <workItem from="1717437336170" duration="137000" />
     </task>
     <servers />
   </component>
