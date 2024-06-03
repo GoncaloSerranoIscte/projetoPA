@@ -20,28 +20,28 @@ As classes XMLDocument e XMLEntity implementam a interface Visitor que facilita 
 <h3>Exemplo Geral:</h3>
 Isto é um exemplo daquilo que pode ser escrito no documento através desta biblioteca:
 <br>
-```xml
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-        &lt;plano&gt;
-        &lt;curso&gt;Mestrado em Engenharia Informática&lt;/curso&gt;
-        &lt;fuc codigo="M4310"&gt;
-        &lt;nome&gt;Programação Avançada&lt;/nome&gt;
-        &lt;ects&gt;6.0&lt;/ects&gt;
-        &lt;avaliacao&gt;
-        &lt;componente nome="Quizzes" peso="20%"/&gt;
-        &lt;componente nome="Projeto" peso="80%"/&gt;
-        &lt;/avaliacao&gt;
-        &lt;/fuc&gt;
-        &lt;fuc codigo="03782"&gt;
-        &lt;nome&gt;Dissertação&lt;/nome&gt;
-        &lt;ects&gt;42.0&lt;/ects&gt;
-        &lt;avaliacao&gt;
-        &lt;componente nome="Dissertação" peso="60%"/&gt;
-        &lt;componente nome="Apresentação" peso="20%"/&gt;
-        &lt;componente nome="Discussão" peso="20%"/&gt;
-        &lt;/avaliacao&gt;
-        &lt;/fuc&gt;
-        &lt;/plano&gt;
+```kotlin
+<?xml version="1.0" encoding="UTF-8"?>
+<plano>
+    <curso>Mestrado em Engenharia Informática</curso>
+    <fuc codigo="M4310">
+        <nome>Programação Avançada</nome>
+        <ects>6.0</ects>
+        <avaliacao>
+            <componente nome="Quizzes" peso="20%"/>
+            <componente nome="Projeto" peso="80%"/>
+        </avaliacao>
+    </fuc>
+    <fuc codigo="03782">
+        <nome>Dissertação</nome>
+        <ects>42.0</ects>
+        <avaliacao>
+            <componente nome="Dissertação" peso="60%"/>
+            <componente nome="Apresentação" peso="20%"/>
+            <componente nome="Discussão" peso="20%"/>
+        </avaliacao>
+    </fuc>
+</plano>
 ```
 
 <h3>Tutorial</h3>
