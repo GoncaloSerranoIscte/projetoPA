@@ -209,7 +209,7 @@ class XMLEntity private constructor(
     }
 
     /**
-     * Adds an XMLAttribute to this instance or uptades the attribute defined with the same name
+     * Adds an XMLAttribute to this instance or updates the attribute defined with the same name
      * @param xmlAttributeToAdd XMLAttribute instance to add to this instance
      * @return this Instance
      */

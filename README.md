@@ -111,11 +111,67 @@ documento.removeXMLAttributeGlobally(xmlEntityName = morenos, xmlAttributeNameTo
 ### DSL
 Foi criada uma DSL para facilitar a criação de documentos
 Pode ser criado uma pequena estrutura da seguinte forma:
+```kotlin
+val doc =
+    document("GOD", version = "3.4") {
+        entity("father") {
+            entity("firstChild"){
+                text("I Have a Text")
+            }
+            entity("secondChild") {
+                entity("firstGrandChild"){
+                    attribute("firstBorn", "True")
+                }
+            }
+        }
+    }
+```
+Tambem podem ser feitas consultas da seguinte forma:
+```kotlin
+val secondChild:XMLEntity = doc.getEntityChild["secondChild"] //para ir buscar a entidade com o dado nome
 
+val attribute:XMLAttribute = secondChild(nameOfAttribute = "firstBorn") //para ir buscar o atributo com o dado nome
+```
 
+Tambem conseguimos adicionar entidades ou attributos diretamente da seguinte forma:
+```kotlin
+//Atributos
+doc.getEntityChild["secondChild"] += attribute("firstBorn", "False")
 
+//Entidades
+doc.getEntityChild["secondChild"] += "who_am_I" 
+doc.getEntityChild["secondChild"] += entity("i_dont_know")
+```
 
+### Tradutor
+Criamos uma classe que efetua uma tradução de uma instancia(de qualquer tipo) para um objeto XMLEntity
 
+Para tal é necessario colocar na Class que queremos traduzir as seguintes annotaçoes caso aplicavel, como o seguinte exemplo:
+```kotlin
+@XmlAdapter(FUCAdapter::class) //adapta a entidade após ser criada com base num metodo implementado pelo utilizador
+class FUC (
+
+    @IsAttribute //adiciona este valor atributo
+    val codigo: String,
+    
+    @IsEntity //adiciona este valor como entidade
+    @XmlString(AddPercentage::class) //altera o string com base num metodo implementado pelo utilizador
+    val ects: Double,
+    
+    @Ignore //ignora este campo
+    val observacoes: String,
+    
+    @IsEntity //adiciona esta entidade com varias entidades(traduzidas de ComponenteAvaliacao) la dentro
+    val avaliacao: List<ComponenteAvaliacao>,
+    
+    @OverrideName("Componente Principal") //dá override ao nome da entidade
+    @IsEntity
+    val compenenteAuxiliar: ComponenteAvaliacao
+)
+```
+Sempre que uma propriedade tem um typo iteravel, na verdade isso vai traduzir para uma entidade com varias entidades filhas
+
+Para utilizar as annotations XmlAdapter e XmlString devem ser criadas classes que implementam as interfaces XMLAdapterInterface e StringAdapterInterface e as funçoes lá definidas 
 
 
 

@@ -38,6 +38,6 @@ class TestDSL {
                 "\t\t<i_dont_know do_i_Know=\"no\">lol</i_dont_know>\n" +
                 "\t</secondChild>\n" +
                 "</father>",doc.prettyPrint)
-        assertEquals(doc.getEntityChild!!["secondChild"]["firstGrandChild"]("firstBorn").getValue, "True")
+        assertEquals(doc.getEntityChild!!["secondChild"]["firstGrandChild"](nameOfAttribute = "firstBorn").getValue, "True")
     }
 }
