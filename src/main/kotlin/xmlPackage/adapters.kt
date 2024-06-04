@@ -16,7 +16,6 @@ interface XMLAdapterInterface {
  * Implement this Interface to be able to use the XmlString Annotation
  */
 interface StringAdapterInterface {
-
     /**
      * Implement this function to be able to use the XmlString Annotation
      * @param stringToAdapt String to adapt

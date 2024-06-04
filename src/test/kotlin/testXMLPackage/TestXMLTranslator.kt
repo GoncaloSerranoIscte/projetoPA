@@ -13,15 +13,16 @@ class TestXMLTranslator {
 
     @Test
     fun translateClassWithNothing(){
+        val tradutor = XMLTranslator()
         val maca = Maca()
         val laranja = Laranja()
-        val entityMaca:XMLEntity = XMLTranslator().toXMLEntity(objectToTranslate = maca)
-        val entityLaranja:XMLEntity = XMLTranslator().toXMLEntity(objectToTranslate = laranja)
+        val entityMaca:XMLEntity = tradutor.toXMLEntity(objectToTranslate = maca)
+        val entityLaranja:XMLEntity = tradutor.toXMLEntity(objectToTranslate = laranja)
         assertEquals("Maça",entityMaca.getName)
         assertEquals("Laranja",entityLaranja.getName)
-        val stringTest:XMLEntity = XMLTranslator().toXMLEntity(objectToTranslate = "texto")
+        val stringTest:XMLEntity = tradutor.toXMLEntity(objectToTranslate = "texto")
         assertEquals("<String/>", stringTest.prettyPrint)
-        val stringInt:XMLEntity = XMLTranslator().toXMLEntity(objectToTranslate = 3)
+        val stringInt:XMLEntity = tradutor.toXMLEntity(objectToTranslate = 3)
         assertEquals("<Int/>", stringInt.prettyPrint)
     }
 

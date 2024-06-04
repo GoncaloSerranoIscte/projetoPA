@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9d54530-c96c-4d33-8f67-e8b0ab5dec12" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestDSL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestDSL.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/adapters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xmlPackage/adapters.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLTranslator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/testXMLPackage/TestXMLTranslator.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +64,7 @@
       <recent name="XMLPackage" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in projetoPA">
+  <component name="RunManager" selected="JUnit.TestXMLTranslator.translateClassWithNothing">
     <configuration name="All in projetoPA" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="projetoPA" />
       <option name="PACKAGE_NAME" value="" />
@@ -90,22 +89,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestXMLTranslator.addAttributes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="projetoPA" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="testXMLPackage.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="testXMLPackage" />
-      <option name="MAIN_CLASS_NAME" value="testXMLPackage.TestXMLTranslator" />
-      <option name="METHOD_NAME" value="addAttributes" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TestXMLTranslator.addEntities" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="projetoPA" />
       <extension name="coverage">
@@ -117,6 +100,22 @@
       <option name="PACKAGE_NAME" value="testXMLPackage" />
       <option name="MAIN_CLASS_NAME" value="testXMLPackage.TestXMLTranslator" />
       <option name="METHOD_NAME" value="addEntities" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestXMLTranslator.translateClassWithNothing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projetoPA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testXMLPackage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testXMLPackage" />
+      <option name="MAIN_CLASS_NAME" value="testXMLPackage.TestXMLTranslator" />
+      <option name="METHOD_NAME" value="translateClassWithNothing" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -138,11 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestXMLTranslator.translateClassWithNothing" />
         <item itemvalue="JUnit.All in projetoPA" />
         <item itemvalue="JUnit.TestDSL.stuff" />
         <item itemvalue="JUnit.TestXMLTranslator.addEntities" />
         <item itemvalue="JUnit.testXMLPackage in projetoPA" />
-        <item itemvalue="JUnit.TestXMLTranslator.addAttributes" />
       </list>
     </recent_temporary>
   </component>
@@ -183,7 +182,7 @@
       <workItem from="1716921296945" duration="5908000" />
       <workItem from="1717177015809" duration="2275000" />
       <workItem from="1717437336170" duration="7833000" />
-      <workItem from="1717523637926" duration="2280000" />
+      <workItem from="1717523637926" duration="2882000" />
     </task>
     <servers />
   </component>
